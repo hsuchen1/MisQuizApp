@@ -62,11 +62,27 @@ const App: React.FC = () => {
     if (!currentQuestionData) {
       return null;
     }
-    // Shuffle options for display. Create a new object to avoid mutating roundQuestions.
-    const shuffledOptions = shuffleArray([...currentQuestionData.options]);
+
+    const originalOptions = currentQuestionData.options;
+    let displayOptions: string[];
+
+    // Check if it's a True/False question
+    const isTrueFalseQuestion =
+      originalOptions.length === 2 &&
+      originalOptions.includes("是") &&
+      originalOptions.includes("非");
+
+    if (isTrueFalseQuestion) {
+      // Enforce "是" then "非" order
+      displayOptions = ["是", "非"];
+    } else {
+      // Shuffle options for other questions
+      displayOptions = shuffleArray([...originalOptions]);
+    }
+
     return {
       ...currentQuestionData,
-      options: shuffledOptions,
+      options: displayOptions,
     };
   }, [currentQuestionData]);
 
@@ -306,7 +322,7 @@ const App: React.FC = () => {
 
 
     const key = event.key.toLowerCase();
-    let determinedOptionIndex = -1; // This is the index into the *displayed* (shuffled) options
+    let determinedOptionIndex = -1; // This is the index into the *displayed* (shuffled or ordered) options
     let player: PlayerID | undefined = undefined;
 
     const p1Keys = ['q', 'w', 'e', 'a', 's']; 
@@ -321,7 +337,7 @@ const App: React.FC = () => {
     }
     
     if (determinedOptionIndex !== -1 && determinedOptionIndex < currentQuestionForDisplay.options.length) {
-      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex]; // Get option from SHUFFLED list
+      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex]; // Get option from SHUFFLED/ORDERED list
       
       if (gameMode === GameMode.SINGLE) { 
         handleAnswer(selectedOption);
@@ -391,7 +407,7 @@ const App: React.FC = () => {
     <>
       <GameScreen
         gameMode={gameMode}
-        currentQuestion={currentQuestionForDisplay} // Pass the question with shuffled options
+        currentQuestion={currentQuestionForDisplay} // Pass the question with shuffled/ordered options
         questionNumber={currentQuestionIndex + 1}
         totalQuestions={targetQuestions}
         player1Score={player1Score}

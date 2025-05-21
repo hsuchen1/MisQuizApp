@@ -1556,10 +1556,17 @@ var App = () => {
     if (!currentQuestionData) {
       return null;
     }
-    const shuffledOptions = shuffleArray([...currentQuestionData.options]);
+    const originalOptions = currentQuestionData.options;
+    let displayOptions;
+    const isTrueFalseQuestion = originalOptions.length === 2 && originalOptions.includes("\u662F") && originalOptions.includes("\u975E");
+    if (isTrueFalseQuestion) {
+      displayOptions = ["\u662F", "\u975E"];
+    } else {
+      displayOptions = shuffleArray([...originalOptions]);
+    }
     return {
       ...currentQuestionData,
-      options: shuffledOptions
+      options: displayOptions
     };
   }, [currentQuestionData]);
   const resetGameState = useCallback(() => {
