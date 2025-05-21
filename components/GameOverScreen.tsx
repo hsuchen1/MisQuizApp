@@ -20,27 +20,27 @@ const GameOverScreen: React.FC<GameOverScreenProps> = ({
   totalQuestionsAnswered, targetQuestions,
   onRestart, onReviewWrongAnswers, canReview
 }) => {
-  let M_message = `Challenge Completed: ${totalQuestionsAnswered}/${targetQuestions} questions.`;
+  let M_message = `挑戰完成: ${totalQuestionsAnswered}/${targetQuestions} 題`;
   let scoreMessage = "";
   let winnerMessage = "";
 
   if (gameMode === GameMode.SINGLE) {
-    scoreMessage = `Final Score: ${singlePlayerScore} | Wrong Answers: ${wrongAnswerCount}`;
+    scoreMessage = `最終分數: ${singlePlayerScore} | 答錯題數: ${wrongAnswerCount}`;
   } else { // Versus modes
-    scoreMessage = `Final Score -> P1: ${player1Score} | P2: ${player2Score}`;
+    scoreMessage = `最終分數 -> 玩家1: ${player1Score} | 玩家2: ${player2Score}`;
     if (player1Score! > player2Score!) {
-      winnerMessage = "🏆 Player 1 Wins! 🏆";
+      winnerMessage = "🏆 玩家1 獲勝！ 🏆";
     } else if (player2Score! > player1Score!) {
-      winnerMessage = "🏆 Player 2 Wins! 🏆";
+      winnerMessage = "🏆 玩家2 獲勝！ 🏆";
     } else {
-      winnerMessage = "😐 It's a Tie! 😐";
+      winnerMessage = "😐 平手！ 😐";
     }
   }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-amber-50 p-6 text-center">
       <div className="bg-white shadow-xl rounded-lg p-8 md:p-12 w-full max-w-lg">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-700 mb-4">🎉 Challenge Over! 🎉</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-700 mb-4">🎉 挑戰結束！ 🎉</h1>
         <p className="text-slate-600 mb-6 text-base md:text-lg">{M_message}</p>
         
         <div className="bg-slate-100 p-6 rounded-lg mb-8">
@@ -55,14 +55,14 @@ const GameOverScreen: React.FC<GameOverScreenProps> = ({
             onClick={onRestart}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
-            Play Again
+            重新開始
           </button>
           {canReview && onReviewWrongAnswers && (
             <button
               onClick={onReviewWrongAnswers}
               className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             >
-              Review Wrong Answers
+              回顧錯題
             </button>
           )}
         </div>

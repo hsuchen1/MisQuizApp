@@ -24,20 +24,21 @@ interface GameScreenProps {
   player1Answered?: boolean; 
   player2Answered?: boolean;
   roundFirstAnswerBy?: PlayerID | null;
+  onGoToHome: () => void; 
 }
 
 const KeyHint: React.FC<{ gameMode: GameMode }> = ({ gameMode }) => {
   let hintText = "";
   if (gameMode === GameMode.SINGLE) {
-    hintText = "Hint: Use number keys 1-5 to answer.";
+    hintText = "提示：使用數字鍵 1-5 回答。";
   } else if (gameMode === GameMode.VERSUS_DESKTOP) {
-    hintText = "P1: QWEAS | P2: 12345 (First to answer starts 10s timer for other)";
+    hintText = "玩家1: QWEAS | 玩家2: 12345 (先答者啟動另一位玩家的 10 秒計時)";
   } else if (gameMode === GameMode.VERSUS_SPEED_DESKTOP) {
-    hintText = "P1: QWEAS | P2: 12345 (Speed round - First to answer!)";
+    hintText = "玩家1: QWEAS | 玩家2: 12345 (競速賽 - 先搶先贏！)";
   } else if (gameMode === GameMode.VERSUS_MOBILE) {
-    hintText = "Player 1: Tap Left | Player 2: Tap Right (First to answer starts 10s timer for other)";
+    hintText = "玩家1：點擊左側 | 玩家2：點擊右側 (先答者啟動另一位玩家的 10 秒計時)";
   } else if (gameMode === GameMode.VERSUS_SPEED_MOBILE) {
-     hintText = "Player 1: Tap Left | Player 2: Tap Right (Speed round - First to answer!)";
+     hintText = "玩家1：點擊左側 | 玩家2：點擊右側 (競速賽 - 先搶先贏！)";
   }
   return hintText ? <p className="text-sm italic text-gray-500 mt-4 text-center">{hintText}</p> : null;
 };
@@ -48,11 +49,11 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
     player1Score, player2Score, singlePlayerScore, wrongAnswersCount,
     onAnswer, timerSecondsLeft, feedbackMessage, p1Feedback, p2Feedback,
     player1Choice, player2Choice, isRoundEvaluated, isSinglePlayerButtonsEnabled,
-    player1Answered, player2Answered, roundFirstAnswerBy,
+    player1Answered, player2Answered, roundFirstAnswerBy, onGoToHome,
   } = props;
 
   if (!currentQuestion) {
-    return <div className="flex items-center justify-center h-screen text-xl">Loading question...</div>;
+    return <div className="flex items-center justify-center h-screen text-xl">載入題目中...</div>;
   }
 
   const isMobileVersus = gameMode === GameMode.VERSUS_MOBILE || gameMode === GameMode.VERSUS_SPEED_MOBILE;
@@ -74,9 +75,6 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
         if(option === player2Choice && option !== currentQuestion.correct_answer) return `${baseClass} ${BUTTON_COLORS.wrong}`;
          return `${baseClass} ${BUTTON_COLORS.default}`;
       }
-      // For active VERSUS_DESKTOP/VERSUS_SPEED_DESKTOP rounds, buttons are generally enabled
-      // Individual player answer status (player1Answered/player2Answered) doesn't directly disable specific buttons here
-      // as the input is keyboard based and controlled in App.tsx.
       return `${baseClass} ${BUTTON_COLORS.default}`;
     }
   };
@@ -91,7 +89,6 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
       return `${baseClass} ${BUTTON_COLORS.default}`;
     }
 
-    // Button is active (not yet evaluated or player hasn't answered)
     if (gameMode === GameMode.VERSUS_MOBILE) {
         if (playerContext === PlayerID.PLAYER1 && player1Answered) return `${baseClass} ${BUTTON_COLORS.disabled}`;
         if (playerContext === PlayerID.PLAYER2 && player2Answered) return `${baseClass} ${BUTTON_COLORS.disabled}`;
@@ -105,43 +102,51 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-amber-50 p-2 pt-4 sm:p-4 sm:pt-8 md:p-6">
       <div className="bg-white shadow-xl rounded-lg p-3 md:p-8 w-full max-w-3xl">
-        {/* Status Bar */}
-        <div className="mb-4 md:mb-6 flex flex-col sm:flex-row justify-between items-center text-sm md:text-base font-semibold">
-          {gameMode === GameMode.SINGLE ? (
-            <>
-              <span className={`${PLAYER_COLORS.default}`}>Score: {singlePlayerScore}</span>
-              <span className={`${PLAYER_COLORS.default}`}>Progress: {questionNumber}/{totalQuestions}</span>
-              <span className={`${FEEDBACK_COLORS.wrong}`}>Wrong: {wrongAnswersCount}</span>
-            </>
-          ) : (
-            <>
-              <span className={`${PLAYER_COLORS.p1}`}>P1: {player1Score}</span>
-              <span className={`${PLAYER_COLORS.default}`}>Q: {questionNumber}/{totalQuestions}</span>
-              <span className={`${PLAYER_COLORS.p2}`}>P2: {player2Score}</span>
-            </>
-          )}
-        </div>
+        {/* Status Bar and Home Button Container */}
+        <div className="mb-4 md:mb-6 flex flex-row justify-between items-center text-sm md:text-base font-semibold">
+          {/* Status Info Group */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-y-1 sm:space-y-0 sm:space-x-2 md:space-x-4">
+            {gameMode === GameMode.SINGLE ? (
+              <>
+                <span className={`${PLAYER_COLORS.default}`}>分數: {singlePlayerScore}</span>
+                <span className={`${PLAYER_COLORS.default}`}>進度: {questionNumber}/{totalQuestions}</span>
+                <span className={`${FEEDBACK_COLORS.wrong}`}>答錯: {wrongAnswersCount}</span>
+              </>
+            ) : (
+              <>
+                <span className={`${PLAYER_COLORS.p1}`}>玩家1: {player1Score}</span>
+                <span className={`${PLAYER_COLORS.default}`}>題: {questionNumber}/{totalQuestions}</span>
+                <span className={`${PLAYER_COLORS.p2}`}>玩家2: {player2Score}</span>
+              </>
+            )}
+          </div>
 
-        {/* Timer for Versus Desktop/Mobile Mode */}
+          {/* Back to Home Button */}
+          <button
+            onClick={onGoToHome}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 sm:py-1.5 sm:px-3 rounded-md text-xs sm:text-sm shadow-sm hover:shadow transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 sm:ml-4 shrink-0" // Added shrink-0
+            aria-label="回到主畫面"
+          >
+            回到主畫面
+          </button>
+        </div>
+        
         {(gameMode === GameMode.VERSUS_DESKTOP || gameMode === GameMode.VERSUS_MOBILE) && timerSecondsLeft !== undefined && timerSecondsLeft < ROUND_TIME_LIMIT_SECONDS && (
           <p className={`text-center text-lg font-bold my-2 ${timerSecondsLeft <=3 ? FEEDBACK_COLORS.timeout : FEEDBACK_COLORS.timer}`}>
-            Time Left: {timerSecondsLeft}s
+            剩餘時間: {timerSecondsLeft}秒
           </p>
         )}
         
-        {/* Question */}
         <div className="bg-slate-100 p-3 md:p-6 rounded-lg mb-4 md:mb-6 min-h-[80px] md:min-h-[100px] flex items-center justify-center">
           <p className="text-md md:text-xl text-slate-800 text-center break-words">
             {currentQuestion.question}
           </p>
         </div>
 
-        {/* Options */}
         {isMobileVersus ? (
           <div className="flex flex-row gap-2 md:gap-4 mb-4">
-            {/* Player 1 Options (Left Side) */}
             <div className="flex-1 flex flex-col gap-1.5 md:gap-3">
-              <h3 className={`text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`}>Player 1</h3>
+              <h3 className={`text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`}>玩家1</h3>
               {currentQuestion.options.map((option, index) => (
                 <button
                   key={`p1-${currentQuestion.id}-${option}`}
@@ -159,7 +164,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
                     (gameMode === GameMode.VERSUS_SPEED_MOBILE && !!roundFirstAnswerBy)
                   }
                   className={getMobileButtonClass(option, PlayerID.PLAYER1)}
-                  aria-label={`Player 1, Option ${index + 1}: ${option}`}
+                  aria-label={`玩家1, 選項 ${index + 1}: ${option}`}
                 >
                   <span className="bg-black/10 text-black/70 rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-xs font-mono shrink-0 mt-0.5">{index + 1}</span>
                   <span className="flex-grow break-words min-w-0">{option}</span>
@@ -167,9 +172,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
               ))}
             </div>
              <div className="w-px bg-slate-300 mx-1"></div> {/* Vertical Divider */}
-            {/* Player 2 Options (Right Side) */}
             <div className="flex-1 flex flex-col gap-1.5 md:gap-3">
-               <h3 className={`text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`}>Player 2</h3>
+               <h3 className={`text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`}>玩家2</h3>
               {currentQuestion.options.map((option, index) => (
                 <button
                   key={`p2-${currentQuestion.id}-${option}`}
@@ -187,7 +191,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
                     (gameMode === GameMode.VERSUS_SPEED_MOBILE && !!roundFirstAnswerBy)
                   }
                   className={getMobileButtonClass(option, PlayerID.PLAYER2)}
-                  aria-label={`Player 2, Option ${index + 1}: ${option}`}
+                  aria-label={`玩家2, 選項 ${index + 1}: ${option}`}
                 >
                   <span className="bg-black/10 text-black/70 rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-xs font-mono shrink-0 mt-0.5">{index + 1}</span>
                   <span className="flex-grow break-words min-w-0">{option}</span>
@@ -196,18 +200,17 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
             </div>
           </div>
         ) : (
-          // Original options layout for SINGLE and DESKTOP_VERSUS modes
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4">
             {currentQuestion.options.map((option, index) => (
               <button
                 key={`${currentQuestion.id}-${option}`}
                 onClick={() => gameMode === GameMode.SINGLE && isSinglePlayerButtonsEnabled && onAnswer(option)}
-                disabled={ // For VERSUS_DESKTOP, App.tsx logic controls input based on keyboard. Button itself isn't individually disabled per player here.
+                disabled={
                   isRoundEvaluated || 
                   (gameMode === GameMode.SINGLE && !isSinglePlayerButtonsEnabled)
                 }
                 className={getDesktopButtonClass(option)}
-                 aria-label={`Option ${index + 1}: ${option}`}
+                 aria-label={`選項 ${index + 1}: ${option}`}
               >
                 <span className="bg-black/10 text-black/70 rounded-full w-6 h-6 flex items-center justify-center text-xs font-mono shrink-0">{index + 1}</span>
                 <span>{option}</span>
@@ -216,22 +219,19 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
           </div>
         )}
         
-        {/* Feedback Section */}
         <div className="min-h-[60px] md:min-h-[80px] flex flex-col items-center justify-center">
-            {/* Player Specific Feedback (Versus Modes) */}
             {gameMode !== GameMode.SINGLE && (
               <div className="w-full flex justify-between text-xs sm:text-sm md:text-base font-semibold mb-2">
-                <span className={`${p1Feedback.includes("Correct") ? FEEDBACK_COLORS.correct : p1Feedback.includes("Wrong") || p1Feedback.includes("Timeout") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p1} ${p1Feedback.includes("answered") || p1Feedback.includes("Answered") ? 'animate-pulse' : ''} w-1/2 text-left`}>{p1Feedback}</span>
-                <span className={`${p2Feedback.includes("Correct") ? FEEDBACK_COLORS.correct : p2Feedback.includes("Wrong") || p2Feedback.includes("Timeout") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p2} ${p2Feedback.includes("answered") || p2Feedback.includes("Answered") ? 'animate-pulse' : ''} w-1/2 text-right`}>{p2Feedback}</span>
+                <span className={`${p1Feedback.includes("正確") ? FEEDBACK_COLORS.correct : p1Feedback.includes("答錯") || p1Feedback.includes("超時") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p1} ${p1Feedback.includes("已作答") ? 'animate-pulse' : ''} w-1/2 text-left`}>{p1Feedback}</span>
+                <span className={`${p2Feedback.includes("正確") ? FEEDBACK_COLORS.correct : p2Feedback.includes("答錯") || p2Feedback.includes("超時") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p2} ${p2Feedback.includes("已作答") ? 'animate-pulse' : ''} w-1/2 text-right`}>{p2Feedback}</span>
               </div>
             )}
 
-            {/* General Feedback */}
             {feedbackMessage && (
               <p className={`text-center text-sm md:text-lg font-bold 
-                ${feedbackMessage.includes("Correct") ? FEEDBACK_COLORS.correct : ''}
-                ${feedbackMessage.includes("Wrong") || feedbackMessage.includes("Incorrect") ? FEEDBACK_COLORS.wrong : ''}
-                ${feedbackMessage.includes("Time's up") || feedbackMessage.includes("Timeout") ? FEEDBACK_COLORS.timeout : ''}
+                ${feedbackMessage.includes("正確") ? FEEDBACK_COLORS.correct : ''}
+                ${feedbackMessage.includes("錯") || feedbackMessage.includes("不正確") ? FEEDBACK_COLORS.wrong : ''}
+                ${feedbackMessage.includes("時間到") || feedbackMessage.includes("超時") ? FEEDBACK_COLORS.timeout : ''}
               `}>
                 {feedbackMessage}
               </p>

@@ -10,16 +10,12 @@ interface StartScreenProps {
 
 const getModeDisplayName = (mode: GameMode): string => {
   switch (mode) {
-    case GameMode.SINGLE: return "Single Player";
-    case GameMode.VERSUS_DESKTOP: return "Versus - Desktop";
-    case GameMode.VERSUS_MOBILE: return "Versus - Mobile";
-    case GameMode.VERSUS_SPEED_DESKTOP: return "Versus Speed - Desktop";
-    case GameMode.VERSUS_SPEED_MOBILE: return "Versus Speed - Mobile";
-    default: // Fallback, though all modes should be covered
-// Fix: Cast 'mode' to 'string' for the default case.
-// TypeScript infers 'mode' as 'never' here because all explicit GameMode enum members
-// are handled by the 'case' statements above. This cast allows the fallback
-// string formatting logic to proceed, treating 'mode' as a string.
+    case GameMode.SINGLE: return "單人模式";
+    case GameMode.VERSUS_DESKTOP: return "雙人對戰 (電腦)";
+    case GameMode.VERSUS_MOBILE: return "雙人對戰 (行動裝置)";
+    case GameMode.VERSUS_SPEED_DESKTOP: return "雙人競速 (電腦)";
+    case GameMode.VERSUS_SPEED_MOBILE: return "雙人競速 (行動裝置)";
+    default:
       const modeAsString: string = mode as string;
       return modeAsString.replace(/_/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
@@ -39,11 +35,11 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartGame, totalAvailableQu
   const handleStart = () => {
     const num = parseInt(numQuestions, 10);
     if (isNaN(num) || num <= 0) {
-      alert("Please enter a valid positive number for questions.");
+      alert("請輸入有效的正整數作為題目數量。");
       return;
     }
     if (num > totalAvailableQuestions) {
-      alert(`Only ${totalAvailableQuestions} questions available. Starting with ${totalAvailableQuestions}.`);
+      alert(`目前題庫只有 ${totalAvailableQuestions} 題。將以 ${totalAvailableQuestions} 題開始。`);
       onStartGame(selectedMode, totalAvailableQuestions);
     } else {
       onStartGame(selectedMode, num);
@@ -61,11 +57,11 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartGame, totalAvailableQu
       <div className="bg-white shadow-xl rounded-lg p-8 md:p-12 w-full max-w-lg text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-700 mb-6">🧠 資管導大挑戰 🧠</h1>
         <p className="text-slate-600 mb-8 text-base md:text-lg">
-          Available Questions: {totalAvailableQuestions}
+          總題數: {totalAvailableQuestions}
         </p>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-slate-700 mb-3">Choose Mode:</h2>
+          <h2 className="text-xl font-semibold text-slate-700 mb-3">選擇模式:</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {(Object.values(GameMode) as GameMode[]).map((mode) => (
               <label key={mode} className={`flex items-center space-x-2 p-3 bg-gray-100 rounded-md hover:bg-gray-200 cursor-pointer transition-colors ${selectedMode === mode ? 'ring-2 ring-blue-500 bg-blue-50' : ''}`}>
@@ -87,7 +83,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartGame, totalAvailableQu
 
         <div className="mb-8">
           <label htmlFor="numQuestions" className="block text-xl font-semibold text-slate-700 mb-3">
-            Number of Questions:
+            題目數量:
           </label>
           <input
             type="number"
@@ -106,7 +102,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartGame, totalAvailableQu
           onClick={handleStart}
           className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
-          Start Challenge
+          開始挑戰
         </button>
       </div>
     </div>

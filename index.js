@@ -1109,15 +1109,15 @@ import { jsx, jsxs } from "react/jsx-runtime";
 var getModeDisplayName = (mode) => {
   switch (mode) {
     case "single" /* SINGLE */:
-      return "Single Player";
+      return "\u55AE\u4EBA\u6A21\u5F0F";
     case "versus_desktop" /* VERSUS_DESKTOP */:
-      return "Versus - Desktop";
+      return "\u96D9\u4EBA\u5C0D\u6230 (\u96FB\u8166)";
     case "versus_mobile" /* VERSUS_MOBILE */:
-      return "Versus - Mobile";
+      return "\u96D9\u4EBA\u5C0D\u6230 (\u884C\u52D5\u88DD\u7F6E)";
     case "versus_speed_desktop" /* VERSUS_SPEED_DESKTOP */:
-      return "Versus Speed - Desktop";
+      return "\u96D9\u4EBA\u7AF6\u901F (\u96FB\u8166)";
     case "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */:
-      return "Versus Speed - Mobile";
+      return "\u96D9\u4EBA\u7AF6\u901F (\u884C\u52D5\u88DD\u7F6E)";
     default:
       const modeAsString = mode;
       return modeAsString.replace(/_/g, " ").split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
@@ -1135,11 +1135,11 @@ var StartScreen = ({ onStartGame, totalAvailableQuestions }) => {
   const handleStart = () => {
     const num = parseInt(numQuestions, 10);
     if (isNaN(num) || num <= 0) {
-      alert("Please enter a valid positive number for questions.");
+      alert("\u8ACB\u8F38\u5165\u6709\u6548\u7684\u6B63\u6574\u6578\u4F5C\u70BA\u984C\u76EE\u6578\u91CF\u3002");
       return;
     }
     if (num > totalAvailableQuestions) {
-      alert(`Only ${totalAvailableQuestions} questions available. Starting with ${totalAvailableQuestions}.`);
+      alert(`\u76EE\u524D\u984C\u5EAB\u53EA\u6709 ${totalAvailableQuestions} \u984C\u3002\u5C07\u4EE5 ${totalAvailableQuestions} \u984C\u958B\u59CB\u3002`);
       onStartGame(selectedMode, totalAvailableQuestions);
     } else {
       onStartGame(selectedMode, num);
@@ -1153,11 +1153,11 @@ var StartScreen = ({ onStartGame, totalAvailableQuestions }) => {
   return /* @__PURE__ */ jsx("div", { className: "flex flex-col items-center justify-center min-h-screen bg-amber-50 p-6", children: /* @__PURE__ */ jsxs("div", { className: "bg-white shadow-xl rounded-lg p-8 md:p-12 w-full max-w-lg text-center", children: [
     /* @__PURE__ */ jsx("h1", { className: "text-3xl md:text-4xl font-bold text-slate-700 mb-6", children: "\u{1F9E0} \u8CC7\u7BA1\u5C0E\u5927\u6311\u6230 \u{1F9E0}" }),
     /* @__PURE__ */ jsxs("p", { className: "text-slate-600 mb-8 text-base md:text-lg", children: [
-      "Available Questions: ",
+      "\u7E3D\u984C\u6578: ",
       totalAvailableQuestions
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "mb-8", children: [
-      /* @__PURE__ */ jsx("h2", { className: "text-xl font-semibold text-slate-700 mb-3", children: "Choose Mode:" }),
+      /* @__PURE__ */ jsx("h2", { className: "text-xl font-semibold text-slate-700 mb-3", children: "\u9078\u64C7\u6A21\u5F0F:" }),
       /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: Object.values(GameMode).map((mode) => /* @__PURE__ */ jsxs("label", { className: `flex items-center space-x-2 p-3 bg-gray-100 rounded-md hover:bg-gray-200 cursor-pointer transition-colors ${selectedMode === mode ? "ring-2 ring-blue-500 bg-blue-50" : ""}`, children: [
         /* @__PURE__ */ jsx(
           "input",
@@ -1174,7 +1174,7 @@ var StartScreen = ({ onStartGame, totalAvailableQuestions }) => {
       ] }, mode)) })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "mb-8", children: [
-      /* @__PURE__ */ jsx("label", { htmlFor: "numQuestions", className: "block text-xl font-semibold text-slate-700 mb-3", children: "Number of Questions:" }),
+      /* @__PURE__ */ jsx("label", { htmlFor: "numQuestions", className: "block text-xl font-semibold text-slate-700 mb-3", children: "\u984C\u76EE\u6578\u91CF:" }),
       /* @__PURE__ */ jsx(
         "input",
         {
@@ -1195,7 +1195,7 @@ var StartScreen = ({ onStartGame, totalAvailableQuestions }) => {
       {
         onClick: handleStart,
         className: "w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50",
-        children: "Start Challenge"
+        children: "\u958B\u59CB\u6311\u6230"
       }
     )
   ] }) });
@@ -1207,15 +1207,15 @@ import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var KeyHint = ({ gameMode }) => {
   let hintText = "";
   if (gameMode === "single" /* SINGLE */) {
-    hintText = "Hint: Use number keys 1-5 to answer.";
+    hintText = "\u63D0\u793A\uFF1A\u4F7F\u7528\u6578\u5B57\u9375 1-5 \u56DE\u7B54\u3002";
   } else if (gameMode === "versus_desktop" /* VERSUS_DESKTOP */) {
-    hintText = "P1: QWEAS | P2: 12345 (First to answer starts 10s timer for other)";
+    hintText = "\u73A9\u5BB61: QWEAS | \u73A9\u5BB62: 12345 (\u5148\u7B54\u8005\u555F\u52D5\u53E6\u4E00\u4F4D\u73A9\u5BB6\u7684 10 \u79D2\u8A08\u6642)";
   } else if (gameMode === "versus_speed_desktop" /* VERSUS_SPEED_DESKTOP */) {
-    hintText = "P1: QWEAS | P2: 12345 (Speed round - First to answer!)";
+    hintText = "\u73A9\u5BB61: QWEAS | \u73A9\u5BB62: 12345 (\u7AF6\u901F\u8CFD - \u5148\u6436\u5148\u8D0F\uFF01)";
   } else if (gameMode === "versus_mobile" /* VERSUS_MOBILE */) {
-    hintText = "Player 1: Tap Left | Player 2: Tap Right (First to answer starts 10s timer for other)";
+    hintText = "\u73A9\u5BB61\uFF1A\u9EDE\u64CA\u5DE6\u5074 | \u73A9\u5BB62\uFF1A\u9EDE\u64CA\u53F3\u5074 (\u5148\u7B54\u8005\u555F\u52D5\u53E6\u4E00\u4F4D\u73A9\u5BB6\u7684 10 \u79D2\u8A08\u6642)";
   } else if (gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */) {
-    hintText = "Player 1: Tap Left | Player 2: Tap Right (Speed round - First to answer!)";
+    hintText = "\u73A9\u5BB61\uFF1A\u9EDE\u64CA\u5DE6\u5074 | \u73A9\u5BB62\uFF1A\u9EDE\u64CA\u53F3\u5074 (\u7AF6\u901F\u8CFD - \u5148\u6436\u5148\u8D0F\uFF01)";
   }
   return hintText ? /* @__PURE__ */ jsx2("p", { className: "text-sm italic text-gray-500 mt-4 text-center", children: hintText }) : null;
 };
@@ -1240,10 +1240,11 @@ var GameScreen = (props) => {
     isSinglePlayerButtonsEnabled,
     player1Answered,
     player2Answered,
-    roundFirstAnswerBy
+    roundFirstAnswerBy,
+    onGoToHome
   } = props;
   if (!currentQuestion) {
-    return /* @__PURE__ */ jsx2("div", { className: "flex items-center justify-center h-screen text-xl", children: "Loading question..." });
+    return /* @__PURE__ */ jsx2("div", { className: "flex items-center justify-center h-screen text-xl", children: "\u8F09\u5165\u984C\u76EE\u4E2D..." });
   }
   const isMobileVersus = gameMode === "versus_mobile" /* VERSUS_MOBILE */ || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */;
   const getDesktopButtonClass = (option) => {
@@ -1282,46 +1283,57 @@ var GameScreen = (props) => {
     return `${baseClass} ${BUTTON_COLORS.default}`;
   };
   return /* @__PURE__ */ jsx2("div", { className: "flex flex-col items-center justify-start min-h-screen bg-amber-50 p-2 pt-4 sm:p-4 sm:pt-8 md:p-6", children: /* @__PURE__ */ jsxs2("div", { className: "bg-white shadow-xl rounded-lg p-3 md:p-8 w-full max-w-3xl", children: [
-    /* @__PURE__ */ jsx2("div", { className: "mb-4 md:mb-6 flex flex-col sm:flex-row justify-between items-center text-sm md:text-base font-semibold", children: gameMode === "single" /* SINGLE */ ? /* @__PURE__ */ jsxs2(Fragment, { children: [
-      /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
-        "Score: ",
-        singlePlayerScore
-      ] }),
-      /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
-        "Progress: ",
-        questionNumber,
-        "/",
-        totalQuestions
-      ] }),
-      /* @__PURE__ */ jsxs2("span", { className: `${FEEDBACK_COLORS.wrong}`, children: [
-        "Wrong: ",
-        wrongAnswersCount
-      ] })
-    ] }) : /* @__PURE__ */ jsxs2(Fragment, { children: [
-      /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.p1}`, children: [
-        "P1: ",
-        player1Score
-      ] }),
-      /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
-        "Q: ",
-        questionNumber,
-        "/",
-        totalQuestions
-      ] }),
-      /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.p2}`, children: [
-        "P2: ",
-        player2Score
-      ] })
-    ] }) }),
+    /* @__PURE__ */ jsxs2("div", { className: "mb-4 md:mb-6 flex flex-row justify-between items-center text-sm md:text-base font-semibold", children: [
+      /* @__PURE__ */ jsx2("div", { className: "flex flex-col sm:flex-row sm:items-center sm:space-y-1 sm:space-y-0 sm:space-x-2 md:space-x-4", children: gameMode === "single" /* SINGLE */ ? /* @__PURE__ */ jsxs2(Fragment, { children: [
+        /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
+          "\u5206\u6578: ",
+          singlePlayerScore
+        ] }),
+        /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
+          "\u9032\u5EA6: ",
+          questionNumber,
+          "/",
+          totalQuestions
+        ] }),
+        /* @__PURE__ */ jsxs2("span", { className: `${FEEDBACK_COLORS.wrong}`, children: [
+          "\u7B54\u932F: ",
+          wrongAnswersCount
+        ] })
+      ] }) : /* @__PURE__ */ jsxs2(Fragment, { children: [
+        /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.p1}`, children: [
+          "\u73A9\u5BB61: ",
+          player1Score
+        ] }),
+        /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.default}`, children: [
+          "\u984C: ",
+          questionNumber,
+          "/",
+          totalQuestions
+        ] }),
+        /* @__PURE__ */ jsxs2("span", { className: `${PLAYER_COLORS.p2}`, children: [
+          "\u73A9\u5BB62: ",
+          player2Score
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsx2(
+        "button",
+        {
+          onClick: onGoToHome,
+          className: "bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 sm:py-1.5 sm:px-3 rounded-md text-xs sm:text-sm shadow-sm hover:shadow transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 sm:ml-4 shrink-0",
+          "aria-label": "\u56DE\u5230\u4E3B\u756B\u9762",
+          children: "\u56DE\u5230\u4E3B\u756B\u9762"
+        }
+      )
+    ] }),
     (gameMode === "versus_desktop" /* VERSUS_DESKTOP */ || gameMode === "versus_mobile" /* VERSUS_MOBILE */) && timerSecondsLeft !== void 0 && timerSecondsLeft < ROUND_TIME_LIMIT_SECONDS && /* @__PURE__ */ jsxs2("p", { className: `text-center text-lg font-bold my-2 ${timerSecondsLeft <= 3 ? FEEDBACK_COLORS.timeout : FEEDBACK_COLORS.timer}`, children: [
-      "Time Left: ",
+      "\u5269\u9918\u6642\u9593: ",
       timerSecondsLeft,
-      "s"
+      "\u79D2"
     ] }),
     /* @__PURE__ */ jsx2("div", { className: "bg-slate-100 p-3 md:p-6 rounded-lg mb-4 md:mb-6 min-h-[80px] md:min-h-[100px] flex items-center justify-center", children: /* @__PURE__ */ jsx2("p", { className: "text-md md:text-xl text-slate-800 text-center break-words", children: currentQuestion.question }) }),
     isMobileVersus ? /* @__PURE__ */ jsxs2("div", { className: "flex flex-row gap-2 md:gap-4 mb-4", children: [
       /* @__PURE__ */ jsxs2("div", { className: "flex-1 flex flex-col gap-1.5 md:gap-3", children: [
-        /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`, children: "Player 1" }),
+        /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`, children: "\u73A9\u5BB61" }),
         currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
           "button",
           {
@@ -1335,7 +1347,7 @@ var GameScreen = (props) => {
             },
             disabled: isRoundEvaluated || gameMode === "versus_mobile" /* VERSUS_MOBILE */ && player1Answered || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */ && !!roundFirstAnswerBy,
             className: getMobileButtonClass(option, "p1" /* PLAYER1 */),
-            "aria-label": `Player 1, Option ${index + 1}: ${option}`,
+            "aria-label": `\u73A9\u5BB61, \u9078\u9805 ${index + 1}: ${option}`,
             children: [
               /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-xs font-mono shrink-0 mt-0.5", children: index + 1 }),
               /* @__PURE__ */ jsx2("span", { className: "flex-grow break-words min-w-0", children: option })
@@ -1347,7 +1359,7 @@ var GameScreen = (props) => {
       /* @__PURE__ */ jsx2("div", { className: "w-px bg-slate-300 mx-1" }),
       " ",
       /* @__PURE__ */ jsxs2("div", { className: "flex-1 flex flex-col gap-1.5 md:gap-3", children: [
-        /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`, children: "Player 2" }),
+        /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`, children: "\u73A9\u5BB62" }),
         currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
           "button",
           {
@@ -1361,7 +1373,7 @@ var GameScreen = (props) => {
             },
             disabled: isRoundEvaluated || gameMode === "versus_mobile" /* VERSUS_MOBILE */ && player2Answered || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */ && !!roundFirstAnswerBy,
             className: getMobileButtonClass(option, "p2" /* PLAYER2 */),
-            "aria-label": `Player 2, Option ${index + 1}: ${option}`,
+            "aria-label": `\u73A9\u5BB62, \u9078\u9805 ${index + 1}: ${option}`,
             children: [
               /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-xs font-mono shrink-0 mt-0.5", children: index + 1 }),
               /* @__PURE__ */ jsx2("span", { className: "flex-grow break-words min-w-0", children: option })
@@ -1370,35 +1382,29 @@ var GameScreen = (props) => {
           `p2-${currentQuestion.id}-${option}`
         ))
       ] })
-    ] }) : (
-      // Original options layout for SINGLE and DESKTOP_VERSUS modes
-      /* @__PURE__ */ jsx2("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4", children: currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
-        "button",
-        {
-          onClick: () => gameMode === "single" /* SINGLE */ && isSinglePlayerButtonsEnabled && onAnswer(option),
-          disabled: (
-            // For VERSUS_DESKTOP, App.tsx logic controls input based on keyboard. Button itself isn't individually disabled per player here.
-            isRoundEvaluated || gameMode === "single" /* SINGLE */ && !isSinglePlayerButtonsEnabled
-          ),
-          className: getDesktopButtonClass(option),
-          "aria-label": `Option ${index + 1}: ${option}`,
-          children: [
-            /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-6 h-6 flex items-center justify-center text-xs font-mono shrink-0", children: index + 1 }),
-            /* @__PURE__ */ jsx2("span", { children: option })
-          ]
-        },
-        `${currentQuestion.id}-${option}`
-      )) })
-    ),
+    ] }) : /* @__PURE__ */ jsx2("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4", children: currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
+      "button",
+      {
+        onClick: () => gameMode === "single" /* SINGLE */ && isSinglePlayerButtonsEnabled && onAnswer(option),
+        disabled: isRoundEvaluated || gameMode === "single" /* SINGLE */ && !isSinglePlayerButtonsEnabled,
+        className: getDesktopButtonClass(option),
+        "aria-label": `\u9078\u9805 ${index + 1}: ${option}`,
+        children: [
+          /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-6 h-6 flex items-center justify-center text-xs font-mono shrink-0", children: index + 1 }),
+          /* @__PURE__ */ jsx2("span", { children: option })
+        ]
+      },
+      `${currentQuestion.id}-${option}`
+    )) }),
     /* @__PURE__ */ jsxs2("div", { className: "min-h-[60px] md:min-h-[80px] flex flex-col items-center justify-center", children: [
       gameMode !== "single" /* SINGLE */ && /* @__PURE__ */ jsxs2("div", { className: "w-full flex justify-between text-xs sm:text-sm md:text-base font-semibold mb-2", children: [
-        /* @__PURE__ */ jsx2("span", { className: `${p1Feedback.includes("Correct") ? FEEDBACK_COLORS.correct : p1Feedback.includes("Wrong") || p1Feedback.includes("Timeout") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p1} ${p1Feedback.includes("answered") || p1Feedback.includes("Answered") ? "animate-pulse" : ""} w-1/2 text-left`, children: p1Feedback }),
-        /* @__PURE__ */ jsx2("span", { className: `${p2Feedback.includes("Correct") ? FEEDBACK_COLORS.correct : p2Feedback.includes("Wrong") || p2Feedback.includes("Timeout") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p2} ${p2Feedback.includes("answered") || p2Feedback.includes("Answered") ? "animate-pulse" : ""} w-1/2 text-right`, children: p2Feedback })
+        /* @__PURE__ */ jsx2("span", { className: `${p1Feedback.includes("\u6B63\u78BA") ? FEEDBACK_COLORS.correct : p1Feedback.includes("\u7B54\u932F") || p1Feedback.includes("\u8D85\u6642") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p1} ${p1Feedback.includes("\u5DF2\u4F5C\u7B54") ? "animate-pulse" : ""} w-1/2 text-left`, children: p1Feedback }),
+        /* @__PURE__ */ jsx2("span", { className: `${p2Feedback.includes("\u6B63\u78BA") ? FEEDBACK_COLORS.correct : p2Feedback.includes("\u7B54\u932F") || p2Feedback.includes("\u8D85\u6642") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p2} ${p2Feedback.includes("\u5DF2\u4F5C\u7B54") ? "animate-pulse" : ""} w-1/2 text-right`, children: p2Feedback })
       ] }),
       feedbackMessage && /* @__PURE__ */ jsx2("p", { className: `text-center text-sm md:text-lg font-bold 
-                ${feedbackMessage.includes("Correct") ? FEEDBACK_COLORS.correct : ""}
-                ${feedbackMessage.includes("Wrong") || feedbackMessage.includes("Incorrect") ? FEEDBACK_COLORS.wrong : ""}
-                ${feedbackMessage.includes("Time's up") || feedbackMessage.includes("Timeout") ? FEEDBACK_COLORS.timeout : ""}
+                ${feedbackMessage.includes("\u6B63\u78BA") ? FEEDBACK_COLORS.correct : ""}
+                ${feedbackMessage.includes("\u932F") || feedbackMessage.includes("\u4E0D\u6B63\u78BA") ? FEEDBACK_COLORS.wrong : ""}
+                ${feedbackMessage.includes("\u6642\u9593\u5230") || feedbackMessage.includes("\u8D85\u6642") ? FEEDBACK_COLORS.timeout : ""}
               `, children: feedbackMessage })
     ] }),
     /* @__PURE__ */ jsx2(KeyHint, { gameMode })
@@ -1420,23 +1426,23 @@ var GameOverScreen = ({
   onReviewWrongAnswers,
   canReview
 }) => {
-  let M_message = `Challenge Completed: ${totalQuestionsAnswered}/${targetQuestions} questions.`;
+  let M_message = `\u6311\u6230\u5B8C\u6210: ${totalQuestionsAnswered}/${targetQuestions} \u984C`;
   let scoreMessage = "";
   let winnerMessage = "";
   if (gameMode === "single" /* SINGLE */) {
-    scoreMessage = `Final Score: ${singlePlayerScore} | Wrong Answers: ${wrongAnswerCount}`;
+    scoreMessage = `\u6700\u7D42\u5206\u6578: ${singlePlayerScore} | \u7B54\u932F\u984C\u6578: ${wrongAnswerCount}`;
   } else {
-    scoreMessage = `Final Score -> P1: ${player1Score} | P2: ${player2Score}`;
+    scoreMessage = `\u6700\u7D42\u5206\u6578 -> \u73A9\u5BB61: ${player1Score} | \u73A9\u5BB62: ${player2Score}`;
     if (player1Score > player2Score) {
-      winnerMessage = "\u{1F3C6} Player 1 Wins! \u{1F3C6}";
+      winnerMessage = "\u{1F3C6} \u73A9\u5BB61 \u7372\u52DD\uFF01 \u{1F3C6}";
     } else if (player2Score > player1Score) {
-      winnerMessage = "\u{1F3C6} Player 2 Wins! \u{1F3C6}";
+      winnerMessage = "\u{1F3C6} \u73A9\u5BB62 \u7372\u52DD\uFF01 \u{1F3C6}";
     } else {
-      winnerMessage = "\u{1F610} It's a Tie! \u{1F610}";
+      winnerMessage = "\u{1F610} \u5E73\u624B\uFF01 \u{1F610}";
     }
   }
   return /* @__PURE__ */ jsx3("div", { className: "flex flex-col items-center justify-center min-h-screen bg-amber-50 p-6 text-center", children: /* @__PURE__ */ jsxs3("div", { className: "bg-white shadow-xl rounded-lg p-8 md:p-12 w-full max-w-lg", children: [
-    /* @__PURE__ */ jsx3("h1", { className: "text-3xl md:text-4xl font-bold text-slate-700 mb-4", children: "\u{1F389} Challenge Over! \u{1F389}" }),
+    /* @__PURE__ */ jsx3("h1", { className: "text-3xl md:text-4xl font-bold text-slate-700 mb-4", children: "\u{1F389} \u6311\u6230\u7D50\u675F\uFF01 \u{1F389}" }),
     /* @__PURE__ */ jsx3("p", { className: "text-slate-600 mb-6 text-base md:text-lg", children: M_message }),
     /* @__PURE__ */ jsxs3("div", { className: "bg-slate-100 p-6 rounded-lg mb-8", children: [
       /* @__PURE__ */ jsx3("p", { className: "text-xl font-semibold text-slate-800 mb-2", children: scoreMessage }),
@@ -1448,7 +1454,7 @@ var GameOverScreen = ({
         {
           onClick: onRestart,
           className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50",
-          children: "Play Again"
+          children: "\u91CD\u65B0\u958B\u59CB"
         }
       ),
       canReview && onReviewWrongAnswers && /* @__PURE__ */ jsx3(
@@ -1456,7 +1462,7 @@ var GameOverScreen = ({
         {
           onClick: onReviewWrongAnswers,
           className: "bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50",
-          children: "Review Wrong Answers"
+          children: "\u56DE\u9867\u932F\u984C"
         }
       )
     ] })
@@ -1470,29 +1476,29 @@ var ReviewModal = ({ isOpen, onClose, wrongAnswers }) => {
   if (!isOpen) return null;
   return /* @__PURE__ */ jsx4("div", { className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50", children: /* @__PURE__ */ jsxs4("div", { className: "bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col", children: [
     /* @__PURE__ */ jsxs4("div", { className: "flex justify-between items-center p-4 md:p-6 border-b border-gray-200", children: [
-      /* @__PURE__ */ jsx4("h2", { className: "text-xl md:text-2xl font-bold text-slate-700", children: "Review Wrong Answers" }),
+      /* @__PURE__ */ jsx4("h2", { className: "text-xl md:text-2xl font-bold text-slate-700", children: "\u56DE\u9867\u932F\u984C" }),
       /* @__PURE__ */ jsx4(
         "button",
         {
           onClick: onClose,
           className: "text-gray-500 hover:text-gray-700 text-2xl",
-          "aria-label": "Close modal",
+          "aria-label": "\u95DC\u9589\u5F48\u7A97",
           children: "\xD7"
         }
       )
     ] }),
-    /* @__PURE__ */ jsx4("div", { className: "p-4 md:p-6 overflow-y-auto custom-scrollbar flex-grow", children: wrongAnswers.length === 0 ? /* @__PURE__ */ jsx4("p", { className: "text-slate-600 text-center", children: "No wrong answers to review. Great job!" }) : /* @__PURE__ */ jsx4("ul", { className: "space-y-6", children: wrongAnswers.map((item, index) => /* @__PURE__ */ jsxs4("li", { className: "bg-slate-50 p-4 rounded-md shadow-sm", children: [
+    /* @__PURE__ */ jsx4("div", { className: "p-4 md:p-6 overflow-y-auto custom-scrollbar flex-grow", children: wrongAnswers.length === 0 ? /* @__PURE__ */ jsx4("p", { className: "text-slate-600 text-center", children: "\u6C92\u6709\u932F\u984C\u53EF\u4EE5\u56DE\u9867\uFF0C\u505A\u5F97\u597D\uFF01" }) : /* @__PURE__ */ jsx4("ul", { className: "space-y-6", children: wrongAnswers.map((item, index) => /* @__PURE__ */ jsxs4("li", { className: "bg-slate-50 p-4 rounded-md shadow-sm", children: [
       /* @__PURE__ */ jsxs4("p", { className: "text-sm font-semibold text-slate-500 mb-1", children: [
-        "Mistake #",
+        "\u932F\u984C #",
         index + 1
       ] }),
       /* @__PURE__ */ jsxs4("p", { className: "text-base md:text-lg font-medium text-slate-800 mb-2", children: [
-        /* @__PURE__ */ jsx4("span", { className: "font-semibold", children: "Q:" }),
+        /* @__PURE__ */ jsx4("span", { className: "font-semibold", children: "\u554F:" }),
         " ",
         item.question
       ] }),
       /* @__PURE__ */ jsxs4("p", { className: "text-base text-green-600 font-semibold", children: [
-        /* @__PURE__ */ jsx4("span", { className: "font-semibold text-green-700", children: "A:" }),
+        /* @__PURE__ */ jsx4("span", { className: "font-semibold text-green-700", children: "\u7B54:" }),
         " ",
         item.correct_answer
       ] })
@@ -1502,7 +1508,7 @@ var ReviewModal = ({ isOpen, onClose, wrongAnswers }) => {
       {
         onClick: onClose,
         className: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow-sm transition-colors",
-        children: "Close"
+        children: "\u95DC\u9589"
       }
     ) })
   ] }) });
@@ -1568,6 +1574,10 @@ var App = () => {
     setP2Feedback("");
     if (timerRef.current) clearInterval(timerRef.current);
   }, []);
+  const handleGoToHome = useCallback(() => {
+    resetGameState();
+    setCurrentScreen("start");
+  }, [resetGameState]);
   const handleStartGame = useCallback((mode, numQuestions) => {
     resetGameState();
     setGameMode(mode);
@@ -1612,16 +1622,16 @@ var App = () => {
     const p1Correct = p1Ans === correctAnswer;
     const p2Correct = p2Ans === correctAnswer;
     if (p1Ans !== null) {
-      setP1Feedback(p1Correct ? "P1 Correct!" : "P1 Wrong!");
-    } else if (!p1Feedback.includes("Timeout")) {
-      setP1Feedback("P1 Timeout");
+      setP1Feedback(p1Correct ? "\u73A9\u5BB61 \u6B63\u78BA\uFF01" : "\u73A9\u5BB61 \u7B54\u932F\uFF01");
+    } else if (!p1Feedback.includes("\u8D85\u6642")) {
+      setP1Feedback("\u73A9\u5BB61 \u8D85\u6642");
     }
     if (p2Ans !== null) {
-      setP2Feedback(p2Correct ? "P2 Correct!" : "P2 Wrong!");
-    } else if (!p2Feedback.includes("Timeout")) {
-      setP2Feedback("P2 Timeout");
+      setP2Feedback(p2Correct ? "\u73A9\u5BB62 \u6B63\u78BA\uFF01" : "\u73A9\u5BB62 \u7B54\u932F\uFF01");
+    } else if (!p2Feedback.includes("\u8D85\u6642")) {
+      setP2Feedback("\u73A9\u5BB62 \u8D85\u6642");
     }
-    setFeedbackMessage(`Correct Answer: ${correctAnswer}`);
+    setFeedbackMessage(`\u6B63\u78BA\u7B54\u6848: ${correctAnswer}`);
     if (p1Correct) setPlayer1Score((s) => s + 1);
     if (p2Correct) setPlayer2Score((s) => s + 1);
     setQuestionsAnsweredTotal((q) => q + 1);
@@ -1640,10 +1650,10 @@ var App = () => {
           const currentP1Choice = player1Choice;
           const currentP2Choice = player2Choice;
           if (activeTimerForPlayer === "p1" /* PLAYER1 */) {
-            setP1Feedback("P1 Timeout");
+            setP1Feedback("\u73A9\u5BB61 \u8D85\u6642");
             setTimeout(() => evaluateVersusRound(null, currentP2Choice), 100);
           } else if (activeTimerForPlayer === "p2" /* PLAYER2 */) {
-            setP2Feedback("P2 Timeout");
+            setP2Feedback("\u73A9\u5BB62 \u8D85\u6642");
             setTimeout(() => evaluateVersusRound(currentP1Choice, null), 100);
           }
           setActiveTimerForPlayer(null);
@@ -1663,10 +1673,10 @@ var App = () => {
       const isCorrect = selectedOption === currentQuestion.correct_answer;
       if (isCorrect) {
         setPlayerScore((s) => s + 1);
-        setFeedbackMessage("\u2705 Correct!");
+        setFeedbackMessage("\u2705 \u6B63\u78BA\uFF01");
       } else {
         setWrongAnswerCount((c) => c + 1);
-        setFeedbackMessage(`\u274C Wrong! Correct: ${currentQuestion.correct_answer}`);
+        setFeedbackMessage(`\u274C \u7B54\u932F\uFF01\u6B63\u78BA: ${currentQuestion.correct_answer}`);
         setWrongAnswersList((prev) => [...prev, { ...currentQuestion }]);
       }
       setQuestionsAnsweredTotal((q) => q + 1);
@@ -1676,30 +1686,30 @@ var App = () => {
         if (player === "p1" /* PLAYER1 */) {
           setPlayer1Answered(true);
           setPlayer1Choice(selectedOption);
-          setP1Feedback("P1 Answered");
-          setFeedbackMessage("Waiting for Player 2...");
+          setP1Feedback("\u73A9\u5BB61 \u5DF2\u4F5C\u7B54");
+          setFeedbackMessage("\u7B49\u5F85 \u73A9\u5BB62...");
           startRoundTimer("p2" /* PLAYER2 */);
         } else if (player === "p2" /* PLAYER2 */) {
           setPlayer2Answered(true);
           setPlayer2Choice(selectedOption);
-          setP2Feedback("P2 Answered");
-          setFeedbackMessage("Waiting for Player 1...");
+          setP2Feedback("\u73A9\u5BB62 \u5DF2\u4F5C\u7B54");
+          setFeedbackMessage("\u7B49\u5F85 \u73A9\u5BB61...");
           startRoundTimer("p1" /* PLAYER1 */);
         }
       } else {
         if (player === "p1" /* PLAYER1 */ && !player1Answered && player2Answered) {
           setPlayer1Answered(true);
           setPlayer1Choice(selectedOption);
-          setP1Feedback("P1 Answered");
+          setP1Feedback("\u73A9\u5BB61 \u5DF2\u4F5C\u7B54");
           cancelRoundTimer();
-          setFeedbackMessage("Processing results...");
+          setFeedbackMessage("\u8655\u7406\u7D50\u679C\u4E2D...");
           setTimeout(() => evaluateVersusRound(selectedOption, player2Choice), 100);
         } else if (player === "p2" /* PLAYER2 */ && !player2Answered && player1Answered) {
           setPlayer2Answered(true);
           setPlayer2Choice(selectedOption);
-          setP2Feedback("P2 Answered");
+          setP2Feedback("\u73A9\u5BB62 \u5DF2\u4F5C\u7B54");
           cancelRoundTimer();
-          setFeedbackMessage("Processing results...");
+          setFeedbackMessage("\u8655\u7406\u7D50\u679C\u4E2D...");
           setTimeout(() => evaluateVersusRound(player1Choice, selectedOption), 100);
         }
       }
@@ -1711,10 +1721,10 @@ var App = () => {
       let feedback = "";
       let scoreChange = 0;
       if (isCorrect) {
-        feedback = `${player === "p1" /* PLAYER1 */ ? "P1" : "P2"} Correct (+1)!`;
+        feedback = `${player === "p1" /* PLAYER1 */ ? "\u73A9\u5BB61" : "\u73A9\u5BB62"} \u6B63\u78BA (+1)\uFF01`;
         scoreChange = 1;
       } else {
-        feedback = `${player === "p1" /* PLAYER1 */ ? "P1" : "P2"} Wrong (-1)!`;
+        feedback = `${player === "p1" /* PLAYER1 */ ? "\u73A9\u5BB61" : "\u73A9\u5BB62"} \u7B54\u932F (-1)\uFF01`;
         scoreChange = -1;
         setWrongAnswersList((prev) => [...prev, { ...currentQuestion }]);
       }
@@ -1727,7 +1737,7 @@ var App = () => {
         setP2Feedback(feedback);
         setPlayer2Choice(selectedOption);
       }
-      setFeedbackMessage(`Correct Answer: ${currentQuestion.correct_answer}`);
+      setFeedbackMessage(`\u6B63\u78BA\u7B54\u6848: ${currentQuestion.correct_answer}`);
       setQuestionsAnsweredTotal((q) => q + 1);
       setTimeout(loadNextQuestion, VERSUS_SPEED_RESULT_DELAY_MS);
     }
@@ -1846,9 +1856,10 @@ var App = () => {
       isSinglePlayerButtonsEnabled,
       player1Answered,
       player2Answered,
-      roundFirstAnswerBy
+      roundFirstAnswerBy,
+      onGoToHome: handleGoToHome
     }
-  ) }) : /* @__PURE__ */ jsx5("div", { className: "flex items-center justify-center h-screen text-xl", children: "Preparing questions..." });
+  ) }) : /* @__PURE__ */ jsx5("div", { className: "flex items-center justify-center h-screen text-xl", children: "\u6E96\u5099\u984C\u76EE\u4E2D..." });
 };
 var App_default = App;
 

@@ -31,11 +31,9 @@ const App: React.FC = () => {
   const [roundQuestions, setRoundQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   
-  // Single Player State
   const [playerScore, setPlayerScore] = useState<number>(0);
   const [wrongAnswerCount, setWrongAnswerCount] = useState<number>(0);
   
-  // Versus Mode State
   const [player1Score, setPlayer1Score] = useState<number>(0);
   const [player2Score, setPlayer2Score] = useState<number>(0);
   const [player1Answered, setPlayer1Answered] = useState<boolean>(false);
@@ -43,8 +41,8 @@ const App: React.FC = () => {
   const [player1Choice, setPlayer1Choice] = useState<string | null>(null);
   const [player2Choice, setPlayer2Choice] = useState<string | null>(null);
   const [timerSecondsLeft, setTimerSecondsLeft] = useState<number>(ROUND_TIME_LIMIT_SECONDS);
-  const [roundFirstAnswerBy, setRoundFirstAnswerBy] = useState<PlayerID | null>(null); // For speed mode
-  const [activeTimerForPlayer, setActiveTimerForPlayer] = useState<PlayerID | null>(null); // For VERSUS_MOBILE/DESKTOP timer
+  const [roundFirstAnswerBy, setRoundFirstAnswerBy] = useState<PlayerID | null>(null); 
+  const [activeTimerForPlayer, setActiveTimerForPlayer] = useState<PlayerID | null>(null); 
   
   const [wrongAnswersList, setWrongAnswersList] = useState<WrongAnswer[]>([]);
   const [isRoundEvaluated, setIsRoundEvaluated] = useState<boolean>(false);
@@ -56,7 +54,6 @@ const App: React.FC = () => {
   
   const [showReviewModal, setShowReviewModal] = useState<boolean>(false);
 
-  // Fix: Changed type from NodeJS.Timeout to ReturnType<typeof setInterval> for browser compatibility and correct typing for setInterval ID.
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const currentQuestion = roundQuestions[currentQuestionIndex] || null;
@@ -83,6 +80,11 @@ const App: React.FC = () => {
     setP2Feedback("");
     if (timerRef.current) clearInterval(timerRef.current);
   }, []);
+
+  const handleGoToHome = useCallback(() => {
+    resetGameState();
+    setCurrentScreen('start');
+  }, [resetGameState]);
 
   const handleStartGame = useCallback((mode: GameMode, numQuestions: number) => {
     resetGameState();
@@ -112,7 +114,7 @@ const App: React.FC = () => {
         setP1Feedback("");
         setP2Feedback("");
         setTimerSecondsLeft(ROUND_TIME_LIMIT_SECONDS);
-        if (timerRef.current) clearInterval(timerRef.current); // Use clearInterval for interval timer
+        if (timerRef.current) clearInterval(timerRef.current);
     } else {
         setCurrentScreen('gameOver');
     }
@@ -121,7 +123,6 @@ const App: React.FC = () => {
 
   const cancelRoundTimer = useCallback(() => {
     if (timerRef.current) {
-      // Fix: Use clearInterval for ID obtained from setInterval.
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
@@ -130,25 +131,25 @@ const App: React.FC = () => {
   const evaluateVersusRound = useCallback((p1Ans: string | null, p2Ans: string | null) => {
     if (isRoundEvaluated || !currentQuestion) return;
     setIsRoundEvaluated(true);
-    cancelRoundTimer(); // Ensure timer is stopped before evaluation
+    cancelRoundTimer(); 
 
     const correctAnswer = currentQuestion.correct_answer;
     const p1Correct = p1Ans === correctAnswer;
     const p2Correct = p2Ans === correctAnswer;
 
     if (p1Ans !== null) {
-        setP1Feedback(p1Correct ? "P1 Correct!" : "P1 Wrong!");
-    } else if (!p1Feedback.includes("Timeout")) { // Only set to Timeout if not already set by timer expiry
-        setP1Feedback("P1 Timeout");
+        setP1Feedback(p1Correct ? "玩家1 正確！" : "玩家1 答錯！");
+    } else if (!p1Feedback.includes("超時")) { 
+        setP1Feedback("玩家1 超時");
     }
     
     if (p2Ans !== null) {
-        setP2Feedback(p2Correct ? "P2 Correct!" : "P2 Wrong!");
-    } else if (!p2Feedback.includes("Timeout")) { // Only set to Timeout if not already set by timer expiry
-        setP2Feedback("P2 Timeout");
+        setP2Feedback(p2Correct ? "玩家2 正確！" : "玩家2 答錯！");
+    } else if (!p2Feedback.includes("超時")) { 
+        setP2Feedback("玩家2 超時");
     }
     
-    setFeedbackMessage(`Correct Answer: ${correctAnswer}`);
+    setFeedbackMessage(`正確答案: ${correctAnswer}`);
 
     if (p1Correct) setPlayer1Score(s => s + 1);
     if (p2Correct) setPlayer2Score(s => s + 1);
@@ -160,7 +161,7 @@ const App: React.FC = () => {
   }, [isRoundEvaluated, currentQuestion, cancelRoundTimer, loadNextQuestion, p1Feedback, p2Feedback]);
 
 
-  const startRoundTimer = useCallback((timingPlayer: PlayerID | null) => { // timingPlayer is the one who needs to answer
+  const startRoundTimer = useCallback((timingPlayer: PlayerID | null) => { 
     cancelRoundTimer();
     if (!timingPlayer) return; 
 
@@ -174,10 +175,10 @@ const App: React.FC = () => {
           const currentP2Choice = player2Choice;
 
           if (activeTimerForPlayer === PlayerID.PLAYER1) { 
-             setP1Feedback("P1 Timeout");
+             setP1Feedback("玩家1 超時");
              setTimeout(() => evaluateVersusRound(null, currentP2Choice), 100); 
           } else if (activeTimerForPlayer === PlayerID.PLAYER2) { 
-             setP2Feedback("P2 Timeout");
+             setP2Feedback("玩家2 超時");
              setTimeout(() => evaluateVersusRound(currentP1Choice, null), 100); 
           }
           setActiveTimerForPlayer(null); 
@@ -201,44 +202,44 @@ const App: React.FC = () => {
       const isCorrect = selectedOption === currentQuestion.correct_answer;
       if (isCorrect) {
         setPlayerScore(s => s + 1);
-        setFeedbackMessage("✅ Correct!");
+        setFeedbackMessage("✅ 正確！");
       } else {
         setWrongAnswerCount(c => c + 1);
-        setFeedbackMessage(`❌ Wrong! Correct: ${currentQuestion.correct_answer}`);
+        setFeedbackMessage(`❌ 答錯！正確: ${currentQuestion.correct_answer}`);
         setWrongAnswersList(prev => [...prev, { ...currentQuestion }]);
       }
       setQuestionsAnsweredTotal(q => q + 1);
       setTimeout(loadNextQuestion, SINGLE_PLAYER_DELAY_MS);
     } 
     else if (gameMode === GameMode.VERSUS_DESKTOP || gameMode === GameMode.VERSUS_MOBILE) {
-        if (!player1Answered && !player2Answered) { // This is the first answer of the round
+        if (!player1Answered && !player2Answered) { 
             if (player === PlayerID.PLAYER1) {
                 setPlayer1Answered(true);
                 setPlayer1Choice(selectedOption);
-                setP1Feedback("P1 Answered");
-                setFeedbackMessage("Waiting for Player 2...");
+                setP1Feedback("玩家1 已作答");
+                setFeedbackMessage("等待 玩家2...");
                 startRoundTimer(PlayerID.PLAYER2);
             } else if (player === PlayerID.PLAYER2) {
                 setPlayer2Answered(true);
                 setPlayer2Choice(selectedOption);
-                setP2Feedback("P2 Answered");
-                setFeedbackMessage("Waiting for Player 1...");
+                setP2Feedback("玩家2 已作答");
+                setFeedbackMessage("等待 玩家1...");
                 startRoundTimer(PlayerID.PLAYER1);
             }
-        } else { // One player has already answered
-            if (player === PlayerID.PLAYER1 && !player1Answered && player2Answered) { // P2 answered first, now P1 answers
+        } else { 
+            if (player === PlayerID.PLAYER1 && !player1Answered && player2Answered) { 
                 setPlayer1Answered(true);
                 setPlayer1Choice(selectedOption);
-                setP1Feedback("P1 Answered");
+                setP1Feedback("玩家1 已作答");
                 cancelRoundTimer();
-                setFeedbackMessage("Processing results...");
+                setFeedbackMessage("處理結果中...");
                 setTimeout(() => evaluateVersusRound(selectedOption, player2Choice), 100);
-            } else if (player === PlayerID.PLAYER2 && !player2Answered && player1Answered) { // P1 answered first, now P2 answers
+            } else if (player === PlayerID.PLAYER2 && !player2Answered && player1Answered) { 
                 setPlayer2Answered(true);
                 setPlayer2Choice(selectedOption);
-                setP2Feedback("P2 Answered");
+                setP2Feedback("玩家2 已作答");
                 cancelRoundTimer();
-                setFeedbackMessage("Processing results...");
+                setFeedbackMessage("處理結果中...");
                 setTimeout(() => evaluateVersusRound(player1Choice, selectedOption), 100);
             }
         }
@@ -253,10 +254,10 @@ const App: React.FC = () => {
       let scoreChange = 0;
 
       if (isCorrect) {
-        feedback = `${player === PlayerID.PLAYER1 ? "P1" : "P2"} Correct (+1)!`;
+        feedback = `${player === PlayerID.PLAYER1 ? "玩家1" : "玩家2"} 正確 (+1)！`;
         scoreChange = 1;
       } else {
-        feedback = `${player === PlayerID.PLAYER1 ? "P1" : "P2"} Wrong (-1)!`;
+        feedback = `${player === PlayerID.PLAYER1 ? "玩家1" : "玩家2"} 答錯 (-1)！`;
         scoreChange = -1;
         setWrongAnswersList(prev => [...prev, { ...currentQuestion }]);
       }
@@ -270,7 +271,7 @@ const App: React.FC = () => {
         setP2Feedback(feedback);
         setPlayer2Choice(selectedOption); 
       }
-      setFeedbackMessage(`Correct Answer: ${currentQuestion.correct_answer}`);
+      setFeedbackMessage(`正確答案: ${currentQuestion.correct_answer}`);
       setQuestionsAnsweredTotal(q => q + 1);
       setTimeout(loadNextQuestion, VERSUS_SPEED_RESULT_DELAY_MS);
     }
@@ -330,7 +331,6 @@ const App: React.FC = () => {
   }, [handleKeyPress]);
 
   useEffect(() => {
-    // This cleanup runs when the component unmounts.
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
@@ -396,10 +396,11 @@ const App: React.FC = () => {
         player1Answered={player1Answered} 
         player2Answered={player2Answered} 
         roundFirstAnswerBy={roundFirstAnswerBy} 
+        onGoToHome={handleGoToHome} // Pass the new handler
       />
     </>
   ) : (
-    <div className="flex items-center justify-center h-screen text-xl">Preparing questions...</div>
+    <div className="flex items-center justify-center h-screen text-xl">準備題目中...</div>
   );
 };
 
