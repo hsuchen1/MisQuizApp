@@ -1,0 +1,21 @@
+{
+  "name": "資管導大挑戰",
+  "short_name": "資管挑戰",
+  "description": "A fun and interactive quiz application with single-player and multi-player modes, converted from a Python Tkinter app. Test your knowledge across various topics!",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FFFBEB",
+  "theme_color": "#F59E0B",
+  "icons": [
+    {
+      "src": "./icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
