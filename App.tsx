@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Question, GameMode, PlayerID, WrongAnswer } from './types';
 import {
   QUESTIONS_BANK, TOTAL_QUESTIONS_AVAILABLE,
@@ -56,7 +56,20 @@ const App: React.FC = () => {
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const currentQuestion = roundQuestions[currentQuestionIndex] || null;
+  const currentQuestionData = roundQuestions[currentQuestionIndex] || null;
+
+  const currentQuestionForDisplay = useMemo(() => {
+    if (!currentQuestionData) {
+      return null;
+    }
+    // Shuffle options for display. Create a new object to avoid mutating roundQuestions.
+    const shuffledOptions = shuffleArray([...currentQuestionData.options]);
+    return {
+      ...currentQuestionData,
+      options: shuffledOptions,
+    };
+  }, [currentQuestionData]);
+
 
   const resetGameState = useCallback(() => {
     setQuestionsAnsweredTotal(0);
@@ -129,11 +142,11 @@ const App: React.FC = () => {
   }, []);
 
   const evaluateVersusRound = useCallback((p1Ans: string | null, p2Ans: string | null) => {
-    if (isRoundEvaluated || !currentQuestion) return;
+    if (isRoundEvaluated || !currentQuestionData) return;
     setIsRoundEvaluated(true);
     cancelRoundTimer(); 
 
-    const correctAnswer = currentQuestion.correct_answer;
+    const correctAnswer = currentQuestionData.correct_answer;
     const p1Correct = p1Ans === correctAnswer;
     const p2Correct = p2Ans === correctAnswer;
 
@@ -158,7 +171,7 @@ const App: React.FC = () => {
     const delay = VERSUS_ANSWER_DISPLAY_DELAY_MS + VERSUS_EXTRA_DELAY_MS;
     setTimeout(loadNextQuestion, delay);
 
-  }, [isRoundEvaluated, currentQuestion, cancelRoundTimer, loadNextQuestion, p1Feedback, p2Feedback]);
+  }, [isRoundEvaluated, currentQuestionData, cancelRoundTimer, loadNextQuestion, p1Feedback, p2Feedback]);
 
 
   const startRoundTimer = useCallback((timingPlayer: PlayerID | null) => { 
@@ -191,7 +204,7 @@ const App: React.FC = () => {
 
 
   const handleAnswer = useCallback((selectedOption: string, player?: PlayerID) => {
-    if (!currentQuestion || isRoundEvaluated) return;
+    if (!currentQuestionData || isRoundEvaluated) return;
 
     if (gameMode === GameMode.SINGLE) {
       if (!isSinglePlayerButtonsEnabled) return;
@@ -199,14 +212,14 @@ const App: React.FC = () => {
       setIsSinglePlayerButtonsEnabled(false);
       setPlayer1Choice(selectedOption); 
 
-      const isCorrect = selectedOption === currentQuestion.correct_answer;
+      const isCorrect = selectedOption === currentQuestionData.correct_answer;
       if (isCorrect) {
         setPlayerScore(s => s + 1);
         setFeedbackMessage("✅ 正確！");
       } else {
         setWrongAnswerCount(c => c + 1);
-        setFeedbackMessage(`❌ 答錯！正確: ${currentQuestion.correct_answer}`);
-        setWrongAnswersList(prev => [...prev, { ...currentQuestion }]);
+        setFeedbackMessage(`❌ 答錯！正確: ${currentQuestionData.correct_answer}`);
+        setWrongAnswersList(prev => [...prev, { ...currentQuestionData }]);
       }
       setQuestionsAnsweredTotal(q => q + 1);
       setTimeout(loadNextQuestion, SINGLE_PLAYER_DELAY_MS);
@@ -249,7 +262,7 @@ const App: React.FC = () => {
       setIsRoundEvaluated(true); 
       setRoundFirstAnswerBy(player!);
       
-      const isCorrect = selectedOption === currentQuestion.correct_answer;
+      const isCorrect = selectedOption === currentQuestionData.correct_answer;
       let feedback = "";
       let scoreChange = 0;
 
@@ -259,7 +272,7 @@ const App: React.FC = () => {
       } else {
         feedback = `${player === PlayerID.PLAYER1 ? "玩家1" : "玩家2"} 答錯 (-1)！`;
         scoreChange = -1;
-        setWrongAnswersList(prev => [...prev, { ...currentQuestion }]);
+        setWrongAnswersList(prev => [...prev, { ...currentQuestionData }]);
       }
 
       if (player === PlayerID.PLAYER1) {
@@ -271,11 +284,11 @@ const App: React.FC = () => {
         setP2Feedback(feedback);
         setPlayer2Choice(selectedOption); 
       }
-      setFeedbackMessage(`正確答案: ${currentQuestion.correct_answer}`);
+      setFeedbackMessage(`正確答案: ${currentQuestionData.correct_answer}`);
       setQuestionsAnsweredTotal(q => q + 1);
       setTimeout(loadNextQuestion, VERSUS_SPEED_RESULT_DELAY_MS);
     }
-  }, [currentQuestion, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, 
+  }, [currentQuestionData, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, 
       player1Answered, player2Answered, roundFirstAnswerBy, 
       player1Choice, player2Choice, 
       loadNextQuestion, startRoundTimer, cancelRoundTimer, evaluateVersusRound, 
@@ -283,7 +296,7 @@ const App: React.FC = () => {
     ]);
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    if (currentScreen !== 'game' || !currentQuestion || 
+    if (currentScreen !== 'game' || !currentQuestionForDisplay || !currentQuestionData ||
         gameMode === GameMode.VERSUS_MOBILE || gameMode === GameMode.VERSUS_SPEED_MOBILE) {
       return;
     }
@@ -293,22 +306,23 @@ const App: React.FC = () => {
 
 
     const key = event.key.toLowerCase();
-    let optionIndex = -1;
+    let determinedOptionIndex = -1; // This is the index into the *displayed* (shuffled) options
     let player: PlayerID | undefined = undefined;
 
     const p1Keys = ['q', 'w', 'e', 'a', 's']; 
     const p2Keys = ['1', '2', '3', '4', '5']; 
 
     if (p1Keys.includes(key)) {
-      optionIndex = p1Keys.indexOf(key);
+      determinedOptionIndex = p1Keys.indexOf(key);
       player = PlayerID.PLAYER1;
     } else if (p2Keys.includes(key)) {
-      optionIndex = p2Keys.indexOf(key);
+      determinedOptionIndex = p2Keys.indexOf(key);
       player = PlayerID.PLAYER2;
     }
     
-    if (optionIndex !== -1 && optionIndex < currentQuestion.options.length) {
-      const selectedOption = currentQuestion.options[optionIndex];
+    if (determinedOptionIndex !== -1 && determinedOptionIndex < currentQuestionForDisplay.options.length) {
+      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex]; // Get option from SHUFFLED list
+      
       if (gameMode === GameMode.SINGLE) { 
         handleAnswer(selectedOption);
       } else if (gameMode === GameMode.VERSUS_DESKTOP) {
@@ -321,7 +335,7 @@ const App: React.FC = () => {
         if (!roundFirstAnswerBy) handleAnswer(selectedOption, player); 
       }
     }
-  }, [currentScreen, currentQuestion, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
+  }, [currentScreen, currentQuestionData, currentQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -373,11 +387,11 @@ const App: React.FC = () => {
     );
   }
   
-  return currentQuestion ? (
+  return currentQuestionForDisplay ? (
     <>
       <GameScreen
         gameMode={gameMode}
-        currentQuestion={currentQuestion}
+        currentQuestion={currentQuestionForDisplay} // Pass the question with shuffled options
         questionNumber={currentQuestionIndex + 1}
         totalQuestions={targetQuestions}
         player1Score={player1Score}
@@ -396,7 +410,7 @@ const App: React.FC = () => {
         player1Answered={player1Answered} 
         player2Answered={player2Answered} 
         roundFirstAnswerBy={roundFirstAnswerBy} 
-        onGoToHome={handleGoToHome} // Pass the new handler
+        onGoToHome={handleGoToHome}
       />
     </>
   ) : (

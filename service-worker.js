@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'mis-challenge-cache-v1'; // Consider bumping cache version if major changes occur
+const CACHE_NAME = 'mis-challenge-cache-v2'; // Consider bumping cache version if major changes occur
 const urlsToCache = [
   './', // Represents the root, typically index.html in the current directory
   './index.html',

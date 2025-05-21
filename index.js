@@ -3,7 +3,7 @@ import React3 from "react";
 import ReactDOM from "react-dom/client";
 
 // App.tsx
-import { useState as useState2, useEffect as useEffect2, useCallback, useRef as useRef2 } from "react";
+import { useState as useState2, useEffect as useEffect2, useCallback, useRef as useRef2, useMemo } from "react";
 
 // types.ts
 var GameMode = /* @__PURE__ */ ((GameMode2) => {
@@ -1551,7 +1551,17 @@ var App = () => {
   const [p2Feedback, setP2Feedback] = useState2("");
   const [showReviewModal, setShowReviewModal] = useState2(false);
   const timerRef = useRef2(null);
-  const currentQuestion = roundQuestions[currentQuestionIndex] || null;
+  const currentQuestionData = roundQuestions[currentQuestionIndex] || null;
+  const currentQuestionForDisplay = useMemo(() => {
+    if (!currentQuestionData) {
+      return null;
+    }
+    const shuffledOptions = shuffleArray([...currentQuestionData.options]);
+    return {
+      ...currentQuestionData,
+      options: shuffledOptions
+    };
+  }, [currentQuestionData]);
   const resetGameState = useCallback(() => {
     setQuestionsAnsweredTotal(0);
     setCurrentQuestionIndex(0);
@@ -1615,10 +1625,10 @@ var App = () => {
     }
   }, []);
   const evaluateVersusRound = useCallback((p1Ans, p2Ans) => {
-    if (isRoundEvaluated || !currentQuestion) return;
+    if (isRoundEvaluated || !currentQuestionData) return;
     setIsRoundEvaluated(true);
     cancelRoundTimer();
-    const correctAnswer = currentQuestion.correct_answer;
+    const correctAnswer = currentQuestionData.correct_answer;
     const p1Correct = p1Ans === correctAnswer;
     const p2Correct = p2Ans === correctAnswer;
     if (p1Ans !== null) {
@@ -1637,7 +1647,7 @@ var App = () => {
     setQuestionsAnsweredTotal((q) => q + 1);
     const delay = VERSUS_ANSWER_DISPLAY_DELAY_MS + VERSUS_EXTRA_DELAY_MS;
     setTimeout(loadNextQuestion, delay);
-  }, [isRoundEvaluated, currentQuestion, cancelRoundTimer, loadNextQuestion, p1Feedback, p2Feedback]);
+  }, [isRoundEvaluated, currentQuestionData, cancelRoundTimer, loadNextQuestion, p1Feedback, p2Feedback]);
   const startRoundTimer = useCallback((timingPlayer) => {
     cancelRoundTimer();
     if (!timingPlayer) return;
@@ -1664,20 +1674,20 @@ var App = () => {
     }, 1e3);
   }, [cancelRoundTimer, player1Choice, player2Choice, evaluateVersusRound, activeTimerForPlayer]);
   const handleAnswer = useCallback((selectedOption, player) => {
-    if (!currentQuestion || isRoundEvaluated) return;
+    if (!currentQuestionData || isRoundEvaluated) return;
     if (gameMode === "single" /* SINGLE */) {
       if (!isSinglePlayerButtonsEnabled) return;
       setIsRoundEvaluated(true);
       setIsSinglePlayerButtonsEnabled(false);
       setPlayer1Choice(selectedOption);
-      const isCorrect = selectedOption === currentQuestion.correct_answer;
+      const isCorrect = selectedOption === currentQuestionData.correct_answer;
       if (isCorrect) {
         setPlayerScore((s) => s + 1);
         setFeedbackMessage("\u2705 \u6B63\u78BA\uFF01");
       } else {
         setWrongAnswerCount((c) => c + 1);
-        setFeedbackMessage(`\u274C \u7B54\u932F\uFF01\u6B63\u78BA: ${currentQuestion.correct_answer}`);
-        setWrongAnswersList((prev) => [...prev, { ...currentQuestion }]);
+        setFeedbackMessage(`\u274C \u7B54\u932F\uFF01\u6B63\u78BA: ${currentQuestionData.correct_answer}`);
+        setWrongAnswersList((prev) => [...prev, { ...currentQuestionData }]);
       }
       setQuestionsAnsweredTotal((q) => q + 1);
       setTimeout(loadNextQuestion, SINGLE_PLAYER_DELAY_MS);
@@ -1717,7 +1727,7 @@ var App = () => {
       if (roundFirstAnswerBy) return;
       setIsRoundEvaluated(true);
       setRoundFirstAnswerBy(player);
-      const isCorrect = selectedOption === currentQuestion.correct_answer;
+      const isCorrect = selectedOption === currentQuestionData.correct_answer;
       let feedback = "";
       let scoreChange = 0;
       if (isCorrect) {
@@ -1726,7 +1736,7 @@ var App = () => {
       } else {
         feedback = `${player === "p1" /* PLAYER1 */ ? "\u73A9\u5BB61" : "\u73A9\u5BB62"} \u7B54\u932F (-1)\uFF01`;
         scoreChange = -1;
-        setWrongAnswersList((prev) => [...prev, { ...currentQuestion }]);
+        setWrongAnswersList((prev) => [...prev, { ...currentQuestionData }]);
       }
       if (player === "p1" /* PLAYER1 */) {
         setPlayer1Score((s) => s + scoreChange);
@@ -1737,12 +1747,12 @@ var App = () => {
         setP2Feedback(feedback);
         setPlayer2Choice(selectedOption);
       }
-      setFeedbackMessage(`\u6B63\u78BA\u7B54\u6848: ${currentQuestion.correct_answer}`);
+      setFeedbackMessage(`\u6B63\u78BA\u7B54\u6848: ${currentQuestionData.correct_answer}`);
       setQuestionsAnsweredTotal((q) => q + 1);
       setTimeout(loadNextQuestion, VERSUS_SPEED_RESULT_DELAY_MS);
     }
   }, [
-    currentQuestion,
+    currentQuestionData,
     gameMode,
     isRoundEvaluated,
     isSinglePlayerButtonsEnabled,
@@ -1758,25 +1768,25 @@ var App = () => {
     activeTimerForPlayer
   ]);
   const handleKeyPress = useCallback((event) => {
-    if (currentScreen !== "game" || !currentQuestion || gameMode === "versus_mobile" /* VERSUS_MOBILE */ || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */) {
+    if (currentScreen !== "game" || !currentQuestionForDisplay || !currentQuestionData || gameMode === "versus_mobile" /* VERSUS_MOBILE */ || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */) {
       return;
     }
     if (isRoundEvaluated && gameMode !== "single" /* SINGLE */) return;
     if (gameMode === "single" /* SINGLE */ && !isSinglePlayerButtonsEnabled) return;
     const key = event.key.toLowerCase();
-    let optionIndex = -1;
+    let determinedOptionIndex = -1;
     let player = void 0;
     const p1Keys = ["q", "w", "e", "a", "s"];
     const p2Keys = ["1", "2", "3", "4", "5"];
     if (p1Keys.includes(key)) {
-      optionIndex = p1Keys.indexOf(key);
+      determinedOptionIndex = p1Keys.indexOf(key);
       player = "p1" /* PLAYER1 */;
     } else if (p2Keys.includes(key)) {
-      optionIndex = p2Keys.indexOf(key);
+      determinedOptionIndex = p2Keys.indexOf(key);
       player = "p2" /* PLAYER2 */;
     }
-    if (optionIndex !== -1 && optionIndex < currentQuestion.options.length) {
-      const selectedOption = currentQuestion.options[optionIndex];
+    if (determinedOptionIndex !== -1 && determinedOptionIndex < currentQuestionForDisplay.options.length) {
+      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex];
       if (gameMode === "single" /* SINGLE */) {
         handleAnswer(selectedOption);
       } else if (gameMode === "versus_desktop" /* VERSUS_DESKTOP */) {
@@ -1789,7 +1799,7 @@ var App = () => {
         if (!roundFirstAnswerBy) handleAnswer(selectedOption, player);
       }
     }
-  }, [currentScreen, currentQuestion, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
+  }, [currentScreen, currentQuestionData, currentQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
   useEffect2(() => {
     window.addEventListener("keydown", handleKeyPress);
     return () => {
@@ -1834,11 +1844,11 @@ var App = () => {
       canReview && /* @__PURE__ */ jsx5(ReviewModal_default, { isOpen: showReviewModal, onClose: () => setShowReviewModal(false), wrongAnswers: wrongAnswersList })
     ] });
   }
-  return currentQuestion ? /* @__PURE__ */ jsx5(Fragment2, { children: /* @__PURE__ */ jsx5(
+  return currentQuestionForDisplay ? /* @__PURE__ */ jsx5(Fragment2, { children: /* @__PURE__ */ jsx5(
     GameScreen_default,
     {
       gameMode,
-      currentQuestion,
+      currentQuestion: currentQuestionForDisplay,
       questionNumber: currentQuestionIndex + 1,
       totalQuestions: targetQuestions,
       player1Score,
