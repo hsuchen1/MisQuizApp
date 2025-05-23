@@ -13,6 +13,15 @@ import ReviewModal from './components/ReviewModal';
 
 type Screen = 'start' | 'game' | 'gameOver';
 
+// Helper function to compare two arrays for equality in order and content
+const arraysAreEqual = (arr1: string[], arr2: string[]): boolean => {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+};
+
 const shuffleArray = <T,>(array: T[]): T[] => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -21,6 +30,11 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   }
   return newArray;
 };
+
+export interface ProcessedQuestion extends Question {
+  optionsForP1: string[];
+  optionsForP2: string[];
+}
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('start');
@@ -58,33 +72,56 @@ const App: React.FC = () => {
 
   const currentQuestionData = roundQuestions[currentQuestionIndex] || null;
 
-  const currentQuestionForDisplay = useMemo(() => {
+  const processedQuestionForDisplay = useMemo<ProcessedQuestion | null>(() => {
     if (!currentQuestionData) {
       return null;
     }
 
     const originalOptions = currentQuestionData.options;
-    let displayOptions: string[];
+    let p1DisplayOpts: string[];
+    let p2DisplayOpts: string[];
 
-    // Check if it's a True/False question
     const isTrueFalseQuestion =
       originalOptions.length === 2 &&
       originalOptions.includes("是") &&
       originalOptions.includes("非");
 
+    // Rule 1: True/False questions always have "是" first, then "非" for both players, all modes.
     if (isTrueFalseQuestion) {
-      // Enforce "是" then "非" order
-      displayOptions = ["是", "非"];
+      p1DisplayOpts = ["是", "非"];
+      p2DisplayOpts = ["是", "非"];
     } else {
-      // Shuffle options for other questions
-      displayOptions = shuffleArray([...originalOptions]);
+      // For multiple-choice questions:
+      p1DisplayOpts = shuffleArray([...originalOptions]); // P1 options are always shuffled
+
+      // Rule 2: Determine P2 options based on game mode for MCQs
+      if (gameMode === GameMode.VERSUS_MOBILE) {
+        // VERSUS_MOBILE (non-speed): P2 options are shuffled differently from P1
+        p2DisplayOpts = shuffleArray([...originalOptions]);
+        if (originalOptions.length > 1) {
+            let attempts = 0;
+            while (arraysAreEqual(p1DisplayOpts, p2DisplayOpts) && attempts < 10) {
+                p2DisplayOpts = shuffleArray([...originalOptions]);
+                attempts++;
+            }
+            // If options are just two items (non-T/F) and they ended up the same, explicitly flip P2's order
+            if (originalOptions.length === 2 && arraysAreEqual(p1DisplayOpts, p2DisplayOpts)) {
+                p2DisplayOpts = [p1DisplayOpts[1], p1DisplayOpts[0]];
+            }
+        }
+      } else {
+        // All other modes (SINGLE, VERSUS_DESKTOP, VERSUS_SPEED_DESKTOP, VERSUS_SPEED_MOBILE):
+        // P2 options are the same as P1's shuffled options.
+        p2DisplayOpts = [...p1DisplayOpts];
+      }
     }
 
     return {
       ...currentQuestionData,
-      options: displayOptions,
+      optionsForP1: p1DisplayOpts,
+      optionsForP2: p2DisplayOpts,
     };
-  }, [currentQuestionData]);
+  }, [currentQuestionData, gameMode]);
 
 
   const resetGameState = useCallback(() => {
@@ -312,7 +349,7 @@ const App: React.FC = () => {
     ]);
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    if (currentScreen !== 'game' || !currentQuestionForDisplay || !currentQuestionData ||
+    if (currentScreen !== 'game' || !processedQuestionForDisplay || !currentQuestionData ||
         gameMode === GameMode.VERSUS_MOBILE || gameMode === GameMode.VERSUS_SPEED_MOBILE) {
       return;
     }
@@ -322,11 +359,14 @@ const App: React.FC = () => {
 
 
     const key = event.key.toLowerCase();
-    let determinedOptionIndex = -1; // This is the index into the *displayed* (shuffled or ordered) options
+    let determinedOptionIndex = -1; 
     let player: PlayerID | undefined = undefined;
 
     const p1Keys = ['q', 'w', 'e', 'a', 's']; 
     const p2Keys = ['1', '2', '3', '4', '5']; 
+
+    // For desktop modes, optionsForP1 are the ones mapped to keys
+    const optionsToConsiderForKeyPress = processedQuestionForDisplay.optionsForP1;
 
     if (p1Keys.includes(key)) {
       determinedOptionIndex = p1Keys.indexOf(key);
@@ -336,8 +376,8 @@ const App: React.FC = () => {
       player = PlayerID.PLAYER2;
     }
     
-    if (determinedOptionIndex !== -1 && determinedOptionIndex < currentQuestionForDisplay.options.length) {
-      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex]; // Get option from SHUFFLED/ORDERED list
+    if (determinedOptionIndex !== -1 && determinedOptionIndex < optionsToConsiderForKeyPress.length) {
+      const selectedOption = optionsToConsiderForKeyPress[determinedOptionIndex]; 
       
       if (gameMode === GameMode.SINGLE) { 
         handleAnswer(selectedOption);
@@ -351,7 +391,7 @@ const App: React.FC = () => {
         if (!roundFirstAnswerBy) handleAnswer(selectedOption, player); 
       }
     }
-  }, [currentScreen, currentQuestionData, currentQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
+  }, [currentScreen, currentQuestionData, processedQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -403,11 +443,11 @@ const App: React.FC = () => {
     );
   }
   
-  return currentQuestionForDisplay ? (
+  return processedQuestionForDisplay ? (
     <>
       <GameScreen
         gameMode={gameMode}
-        currentQuestion={currentQuestionForDisplay} // Pass the question with shuffled/ordered options
+        currentQuestion={processedQuestionForDisplay} 
         questionNumber={currentQuestionIndex + 1}
         totalQuestions={targetQuestions}
         player1Score={player1Score}

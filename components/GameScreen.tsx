@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Question, GameMode, PlayerID } from '../types';
+import { GameMode, PlayerID } from '../types';
+import { ProcessedQuestion } from '../App'; // Import ProcessedQuestion
 import { ROUND_TIME_LIMIT_SECONDS, PLAYER_COLORS, FEEDBACK_COLORS, BUTTON_COLORS } from '../constants';
 
 interface GameScreenProps {
   gameMode: GameMode;
-  currentQuestion: Question | null;
+  currentQuestion: ProcessedQuestion | null; // Changed from Question to ProcessedQuestion
   questionNumber: number;
   totalQuestions: number;
   player1Score: number;
@@ -61,6 +62,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
   const getDesktopButtonClass = (option: string): string => {
     let baseClass = "font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-150 ease-in-out w-full text-left flex items-center space-x-3 text-sm md:text-base";
     
+    // currentQuestion.correct_answer refers to the original correct answer string
     if (gameMode === GameMode.SINGLE) {
       if (!isSinglePlayerButtonsEnabled && isRoundEvaluated) {
         if (option === currentQuestion.correct_answer) return `${baseClass} ${BUTTON_COLORS.correct}`;
@@ -147,9 +149,9 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
           <div className="flex flex-row gap-2 md:gap-4 mb-4">
             <div className="flex-1 flex flex-col gap-1.5 md:gap-3">
               <h3 className={`text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`}>玩家1</h3>
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.optionsForP1.map((option, index) => (
                 <button
-                  key={`p1-${currentQuestion.id}-${option}`}
+                  key={`p1-${currentQuestion.id}-${option}-${index}`} // Ensure unique key if option strings can repeat
                   onClick={() => {
                     if (isRoundEvaluated) return;
                     if (gameMode === GameMode.VERSUS_MOBILE && !player1Answered) {
@@ -174,9 +176,9 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
              <div className="w-px bg-slate-300 mx-1"></div> {/* Vertical Divider */}
             <div className="flex-1 flex flex-col gap-1.5 md:gap-3">
                <h3 className={`text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`}>玩家2</h3>
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.optionsForP2.map((option, index) => (
                 <button
-                  key={`p2-${currentQuestion.id}-${option}`}
+                  key={`p2-${currentQuestion.id}-${option}-${index}`} // Ensure unique key
                   onClick={() => {
                     if (isRoundEvaluated) return;
                     if (gameMode === GameMode.VERSUS_MOBILE && !player2Answered) {
@@ -199,11 +201,11 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
               ))}
             </div>
           </div>
-        ) : (
+        ) : ( // Single Player or Desktop Versus
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4">
-            {currentQuestion.options.map((option, index) => (
+            {currentQuestion.optionsForP1.map((option, index) => ( // Use optionsForP1 for desktop/single
               <button
-                key={`${currentQuestion.id}-${option}`}
+                key={`${currentQuestion.id}-${option}-${index}`} // Ensure unique key
                 onClick={() => gameMode === GameMode.SINGLE && isSinglePlayerButtonsEnabled && onAnswer(option)}
                 disabled={
                   isRoundEvaluated || 

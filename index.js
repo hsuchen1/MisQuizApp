@@ -44,7 +44,6 @@ var QUESTIONS_BANK = [
       "Six Sigma",
       "Rationalization"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Business process redesign"
   },
   {
@@ -57,7 +56,6 @@ var QUESTIONS_BANK = [
       "TQM.",
       "Six Sigma."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "business process redesign."
   },
   {
@@ -70,7 +68,6 @@ var QUESTIONS_BANK = [
       "complete a systems analysis study.",
       "create models of improved processes."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "complete a systems analysis study."
   },
   {
@@ -83,21 +80,18 @@ var QUESTIONS_BANK = [
       "paradigm shift",
       "business process redesign program"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "paradigm shift"
   },
   {
     id: "q_new_6",
     question: "Business process redesign involves a radical rethinking of the business model.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_7",
     question: "Six Sigma describes the measurement of quality as 60 defects per million.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
@@ -110,7 +104,6 @@ var QUESTIONS_BANK = [
       "Parallel strategy",
       "Audit strategy"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Pilot study strategy"
   },
   {
@@ -123,7 +116,6 @@ var QUESTIONS_BANK = [
       "provides the final certification that the system is ready to be used in a production setting.",
       "tests the information requirements of a system."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "tests the functioning of the system as a whole in order to determine if discrete modules will function together as planned."
   },
   {
@@ -136,7 +128,6 @@ var QUESTIONS_BANK = [
       "is introduced only to a limited area first.",
       "is slowly converted from the old system."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "and the old are run together for a time."
   },
   {
@@ -149,7 +140,6 @@ var QUESTIONS_BANK = [
       "Conversion",
       "Implementation"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Systems design"
   },
   {
@@ -162,7 +152,6 @@ var QUESTIONS_BANK = [
       "information requirements document",
       "request for proposal"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "systems design document"
   },
   {
@@ -175,21 +164,18 @@ var QUESTIONS_BANK = [
       "User information requirements",
       "Available information technology"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "User information requirements"
   },
   {
     id: "q_new_14",
     question: "A phased approach conversion strategy introduces a new system in stages, either by functions or organizational units.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_15",
     question: "Test plans require input from both end users and information systems specialists.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
@@ -202,7 +188,6 @@ var QUESTIONS_BANK = [
       "High-level data flow diagram",
       "Logical design diagram"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "High-level structure chart"
   },
   {
@@ -215,12 +200,10 @@ var QUESTIONS_BANK = [
       "Degree would be a subclass to Mathematics and Physics.",
       "Math, Physics and Degree are sister classes."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Degree is a superclass to Mathematics and Physics."
   },
   {
     id: "q_new_18",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about objects is not true?",
     options: [
       "Objects belonging to a certain class have the features of that class.",
@@ -229,12 +212,10 @@ var QUESTIONS_BANK = [
       "Programs pass data to procedures which then send a message to the object.",
       "New classes of objects are created by choosing an existing class and specifying how the new class differs from the existing class."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Programs pass data to procedures which then send a message to the object."
   },
   {
     id: "q_new_19",
-    // Fix: Changed question": to question:
     question: "________ describe the transformation occurring within the lowest level of the data flow diagrams.",
     options: [
       "Design requirements",
@@ -243,36 +224,28 @@ var QUESTIONS_BANK = [
       "Object-oriented frameworks",
       "Process specifications"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Process specifications"
   },
   {
     id: "q_new_20",
-    // Fix: Changed question": to question:
     question: "Objects are grouped into hierarchies, and hierarchies into classes.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_21",
-    // Fix: Changed question": to question:
     question: "Structured methods handle the modeling of data better than the modeling of processes.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_22",
-    // Fix: Changed question": to question:
     question: "Structured methods treat data and processes as logically separate entities.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_23",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about the traditional systems life cycle is not true?",
     options: [
       'the systems life cycle is predominantly a "waterfall" approach.',
@@ -281,12 +254,10 @@ var QUESTIONS_BANK = [
       "The systems life cycle approach can be costly, time-consuming, and inflexible.",
       "The systems life cycle methodology is a phased approach to building a system."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "The systems life cycle approach is suitable for small desktop systems, which tend to be less structured and more individualized."
   },
   {
     id: "q_new_24",
-    // Fix: Changed question": to question:
     question: "Commercial software packages often include ________ features that allow the software to be modified to meet organizational requirements.",
     options: [
       "automation",
@@ -295,12 +266,10 @@ var QUESTIONS_BANK = [
       "design",
       "customization"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "customization"
   },
   {
     id: "q_new_25",
-    // Fix: Changed question": to question:
     question: "The oldest method for building information systems is",
     options: [
       "agile development.",
@@ -309,12 +278,10 @@ var QUESTIONS_BANK = [
       "the systems life cycle.",
       "rapid application development."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "the systems life cycle."
   },
   {
     id: "q_new_26",
-    // Fix: Changed question": to question:
     question: "In which type of systems building are the development stages organized so that tasks in one stage are completed before the tasks in the next stage begin?",
     options: [
       "Systems life cycle",
@@ -323,12 +290,10 @@ var QUESTIONS_BANK = [
       "JAD",
       "Object-oriented development"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Systems life cycle"
   },
   {
     id: "q_new_27",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about prototyping is not true?",
     options: [
       "Prototyping is least useful when there is some uncertainty about requirements or design solutions.",
@@ -337,12 +302,10 @@ var QUESTIONS_BANK = [
       "Sometimes a prototype is adopted as the production version of a system.",
       "Prototyping is often used for designing an information system's end-user interface."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Prototyping is least useful when there is some uncertainty about requirements or design solutions."
   },
   {
     id: "q_new_28",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about outsourcing is not true?",
     options: [
       "Domestic outsourcing is much more cost-driven than offshore outsourcing.",
@@ -351,12 +314,10 @@ var QUESTIONS_BANK = [
       "Firms often outsource daily operation of IT systems.",
       "Hidden costs can increase the total cost of an offshore outsourcing project by an extra 15 to 57 percent."
     ],
-    // Fix: Changed correct_answer": to correct_answer: and removed erroneous " - 1"
     correct_answer: "Domestic outsourcing is much more cost-driven than offshore outsourcing."
   },
   {
     id: "q_new_29",
-    // Fix: Changed question": to question:
     question: "A software package evaluation process is often based on a series of detailed questions sent to vendors, called a(n):",
     options: [
       "systems design document.",
@@ -365,12 +326,10 @@ var QUESTIONS_BANK = [
       "RFP.",
       "logical design document."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "RFP."
   },
   {
     id: "q_new_30",
-    // Fix: Changed question": to question:
     question: "As a technical project manager, you have decided to propose implementing a prototyping methodology for a small web-based design project. What is the order of steps you will follow in this project?",
     options: [
       "Develop the prototype; use the prototype; revise and enhance the prototype.",
@@ -379,44 +338,34 @@ var QUESTIONS_BANK = [
       "Define the requirements, develop the prototype, revise and enhance the prototype.",
       "Select the best prototype, define the requirements, and implement the prototype."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Identify basic requirements, develop the prototype, use the prototype, revise and enhance the prototype."
   },
   {
     id: "q_new_31",
-    // Fix: Changed question": to question:
     question: "The systems life cycle methodology maintains a formal division of labor between end users and information systems specialists.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_32",
-    // Fix: Changed question": to question:
     question: "A prototype is a working version of an information system that serves as the final version.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_33",
-    // Fix: Changed question": to question:
     question: "Firms generally do not outsource the conception, systems analysis, and design of IT systems to offshore firms.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_34",
-    // Fix: Changed question": to question:
     question: "Cloud computing is a form of outsourcing.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_35",
-    // Fix: Changed question": to question:
     question: "A native mobile app is:",
     options: [
       "a mobile website.",
@@ -425,12 +374,10 @@ var QUESTIONS_BANK = [
       "a responsive mobile app.",
       "one that can operate on all platforms and devices."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "a standalone application that does not use a browser."
   },
   {
     id: "q_new_36",
-    // Fix: Changed question": to question:
     question: `A "responsive design" for mobile applications is a design that responds to a user's:`,
     options: [
       "needs.",
@@ -439,12 +386,10 @@ var QUESTIONS_BANK = [
       "digital device and screen resolution.",
       "gestures."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "digital device and screen resolution."
   },
   {
     id: "q_new_37",
-    // Fix: Changed question": to question:
     question: "Which of the following is not a true statement about native mobile apps?",
     options: [
       "A native app is installed directly on a mobile device.",
@@ -453,12 +398,10 @@ var QUESTIONS_BANK = [
       "Native mobile apps provide a high degree of reliability.",
       "The Kindle e-reading app is an example of a native mobile app."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Native apps can only operate if they are connected to the Internet"
   },
   {
     id: "q_new_38",
-    // Fix: Changed question": to question:
     question: "________ development focuses on rapid delivery of working software by breaking a large project into a series of small subprojects that are completed in short periods of time using iteration, continuous feedback and ongoing user development.",
     options: [
       "Agile",
@@ -467,12 +410,10 @@ var QUESTIONS_BANK = [
       "Traditional systems life cycle",
       "DevOps"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Agile"
   },
   {
     id: "q_new_39",
-    // Fix: Changed question": to question:
     question: "The process of creating workable information systems in a very short period of time with some flexibility to adapt as a project evolves is called:",
     options: [
       "RAD.",
@@ -481,12 +422,10 @@ var QUESTIONS_BANK = [
       "systems analysis and design.",
       "No-code development."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "RAD."
   },
   {
     id: "q_new_40",
-    // Fix: Changed question": to question:
     question: "Which of the following is not a feature of agile development?",
     options: [
       "Sprints",
@@ -495,12 +434,10 @@ var QUESTIONS_BANK = [
       "Cross-functional teams",
       "Early testing"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Waterfall approach"
   },
   {
     id: "q_new_41",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about mobile web apps is true?",
     options: [
       "Users access mobile web apps through their mobile device's web browser.",
@@ -509,28 +446,22 @@ var QUESTIONS_BANK = [
       "A mobile web app requires the user to sign onto a web page.",
       "A mobile web app requires the user to login to a web service."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Users access mobile web apps through their mobile device's web browser."
   },
   {
     id: "q_new_42",
-    // Fix: Changed question": to question:
     question: "Many no-code applications have very limited functionality.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_43",
-    // Fix: Changed question": to question:
     question: "DevOps helps developers at Netflix make hundreds of software changes every day.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_44",
-    // Fix: Changed question": to question:
     question: "Which of the following best describes the central method used in a portfolio analysis?",
     options: [
       "Performing an inventory of all of the organization's information systems projects and assets",
@@ -539,12 +470,10 @@ var QUESTIONS_BANK = [
       "Interviewing a small number of top managers to identify their goals and criteria for achieving success",
       "Scoring proposed systems on a number of dimensions, and selecting the one with the highest score"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Performing an inventory of all of the organization's information systems projects and assets"
   },
   {
     id: "q_new_45",
-    // Fix: Changed question": to question:
     question: "A firm in the finance industry should do which of the following to ensure that it stays current with technology?",
     options: [
       "Select only low-cost, low risk projects",
@@ -553,12 +482,10 @@ var QUESTIONS_BANK = [
       "Have a few high-risk, high-benefit projects",
       "Avoid projects that are very costly"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Have a few high-risk, high-benefit projects"
   },
   {
     id: "q_new_46",
-    // Fix: Changed question": to question:
     question: "Which of the following best describes the central method used in a scoring model?",
     options: [
       "Performing an inventory of all of the organization's information systems projects and assets",
@@ -567,12 +494,10 @@ var QUESTIONS_BANK = [
       "Interviewing a small number of top managers to identify their goals and criteria for achieving success",
       "Calculating the return on investment for each system, and choosing the system with the best return"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Performing a weighted comparison of the criteria used to evaluate a system"
   },
   {
     id: "q_new_47",
-    // Fix: Changed question": to question:
     question: "Which method is used to assign weights to various features of a system?",
     options: [
       "Information systems plan",
@@ -581,12 +506,10 @@ var QUESTIONS_BANK = [
       "TCO analysis",
       "Capital budget"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Scoring model"
   },
   {
     id: "q_new_48",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about scoring models is not true?",
     options: [
       "There are many qualitative judgments involved in using a scoring model.",
@@ -595,12 +518,10 @@ var QUESTIONS_BANK = [
       "Agreement on the criteria used in a scoring model often requires lengthy discussions among the decision-making group.",
       "Weights assigned in a scoring model indicate which criteria are considered the most important by the decision-making group."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "The most important outcome of a scoring model is the score."
   },
   {
     id: "q_new_49",
-    // Fix: Changed question": to question:
     question: "Which of the following strategies represents the proper approach to a low risk, high reward project?",
     options: [
       "Identify and develop",
@@ -609,12 +530,10 @@ var QUESTIONS_BANK = [
       "Pursue after all other projects are complete",
       "Cautiously examine"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Identify and develop"
   },
   {
     id: "q_new_50",
-    // Fix: Changed question": to question:
     question: "The value of systems from a financial perspective essentially revolves around the issue of:",
     options: [
       "total cost of ownership.",
@@ -623,12 +542,10 @@ var QUESTIONS_BANK = [
       "return on invested capital.",
       "the cost of computing equipment."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "return on invested capital."
   },
   {
     id: "q_new_51",
-    // Fix: Changed question": to question:
     question: "Which of the following is not a tangible benefit of information systems?",
     options: [
       "Reduced rate of growth in expenses",
@@ -637,12 +554,10 @@ var QUESTIONS_BANK = [
       "Increased productivity",
       "Reduced facility costs"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Improved resource control"
   },
   {
     id: "q_new_52",
-    // Fix: Changed question": to question:
     question: "The principal capital budgeting models for evaluating information technology projects are the payback method, the accounting rate of return on investment (ROI), net present value, and the:",
     options: [
       "future present value.",
@@ -651,12 +566,10 @@ var QUESTIONS_BANK = [
       "ROPM (real options pricing model).",
       "present value of future cash flows."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "internal rate of return."
   },
   {
     id: "q_new_53",
-    // Fix: Changed question": to question:
     question: "Enhanced employee goodwill falls under what category of costs and benefits of information systems?",
     options: [
       "Costs",
@@ -665,12 +578,10 @@ var QUESTIONS_BANK = [
       "Intangible costs",
       "Intangible benefits"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Intangible benefits"
   },
   {
     id: "q_new_54",
-    // Fix: Changed question": to question:
     question: "Which of the following is a limitation of using a financial approach to evaluate information systems?",
     options: [
       "Inability to measure ROI",
@@ -679,12 +590,10 @@ var QUESTIONS_BANK = [
       "Inability to assess costs from organizational disruption",
       "Inability to assess the cost of technology"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Inability to assess costs from organizational disruption"
   },
   {
     id: "q_new_55",
-    // Fix: Changed question": to question:
     question: "________ methods rely on measures of cash flows into and out of the firm.",
     options: [
       "Scoring model",
@@ -693,12 +602,10 @@ var QUESTIONS_BANK = [
       "Capital budgeting",
       "Risk profiling"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Capital budgeting"
   },
   {
     id: "q_new_56",
-    // Fix: Changed question": to question:
     question: "Which of the following is not one of the seven major factors that should be addressed when making the business case for a specific new information system?",
     options: [
       "Improved decision making",
@@ -707,12 +614,10 @@ var QUESTIONS_BANK = [
       "Customer and supplier relationships",
       "New products and services"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Results of a portfolio analysis of alternative solutions"
   },
   {
     id: "q_new_57",
-    // Fix: Changed question": to question:
     question: "A business case does all of the following except:",
     options: [
       "describe the rationale for proceeding with an investment.",
@@ -721,60 +626,46 @@ var QUESTIONS_BANK = [
       "explain how the investment will provide value for the business.",
       "identify any risks that could negatively affect outcomes."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "detail the specific hardware and software needed to implement the investment."
   },
   {
     id: "q_new_58",
-    // Fix: Changed question": to question:
     question: "An information systems plan contains a statement of corporate goals and specifies how information technology will support the attainment of those goals.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_59",
-    // Fix: Changed question": to question:
     question: "An information systems plan focuses solely on the technology needed to implement the proposed new information system.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_60",
-    // Fix: Changed question": to question:
     question: "Transaction and clerical systems that displace labor and save space typically produce less tangible benefits than management information systems.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_61",
-    // Fix: Changed question": to question:
     question: "Intangible benefits may lead to quantifiable gains in the long run.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_62",
-    // Fix: Changed question": to question:
     question: 'A benefit of using TCO analysis to evaluate an information technology investment is that it is able to incorporate intangible and "soft" factors such as benefits and complexity costs.',
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_63",
-    // Fix: Changed question": to question:
     question: "More timely information is an intangible benefit of information systems.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_64",
-    // Fix: Changed question": to question:
     question: "As discussed in the chapter, which of the following is not one of the immediate consequences of inadequate software project management?",
     options: [
       "Cost overruns",
@@ -783,12 +674,10 @@ var QUESTIONS_BANK = [
       "Technical shortfalls",
       "Failure to obtain anticipated benefits"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Reduced workforce"
   },
   {
     id: "q_new_65",
-    // Fix: Changed question": to question:
     question: "All of the following are indications of a failed information systems project except:",
     options: [
       "employees are refusing to switch to the new system.",
@@ -797,12 +686,10 @@ var QUESTIONS_BANK = [
       "employees require training to properly use the system.",
       "the system is not being used by anyone."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "employees require training to properly use the system."
   },
   {
     id: "q_new_66",
-    // Fix: Changed question": to question:
     question: "As described in the text, which of the following statements about runaway or failed IT projects is not true?",
     options: [
       "Large software projects on average run 33 percent over schedule.",
@@ -811,36 +698,28 @@ var QUESTIONS_BANK = [
       "IT projects often fail because they lack sufficient computing capacity.",
       "One study found that private sector projects underestimate costs and time required by half."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "IT projects often fail because they lack sufficient computing capacity."
   },
   {
     id: "q_new_67",
-    // Fix: Changed question": to question:
     question: "The cost of a project is based solely on the time to complete a project multiplied by the cost of computer resources required to complete the project.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_68",
-    // Fix: Changed question": to question:
     question: "Project management refers to the application of knowledge, skills, tools, and techniques to achieve specific targets within specified budget and time constraints.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_69",
-    // Fix: Changed question": to question:
     question: "Risk is an important variable that project management must deal with.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_70",
-    // Fix: Changed question": to question:
     question: "Successful system building requires careful ________ management to minimize organizational resistance.",
     options: [
       "cost",
@@ -849,12 +728,10 @@ var QUESTIONS_BANK = [
       "supply chain",
       "system application"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "change"
   },
   {
     id: "q_new_71",
-    // Fix: Changed question": to question:
     question: "The differing background between users and information systems specialists is referred to as the:",
     options: [
       "user expertise gap.",
@@ -863,12 +740,10 @@ var QUESTIONS_BANK = [
       "user-designer expertise gap.",
       "user-designer communications gap."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "user-designer communications gap."
   },
   {
     id: "q_new_72",
-    // Fix: Changed question": to question:
     question: "While users are concerned about an information system delivering the information needed for work, designers might be concerned about:",
     options: [
       "accessing the data on iPhones and tablets.",
@@ -877,12 +752,10 @@ var QUESTIONS_BANK = [
       "what demands the system will place on the company servers.",
       "opening lines of communication with end users."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "what demands the system will place on the company servers."
   },
   {
     id: "q_new_73",
-    // Fix: Changed question": to question:
     question: "Which of the following statements best describes the effect that project structure has on overall project risk?",
     options: [
       "Highly structured projects are more complex and run a higher risk of programmers and users misunderstanding the ultimate goals.",
@@ -891,12 +764,10 @@ var QUESTIONS_BANK = [
       "Less structured projects pose less risk of running up unforeseen costs.",
       "The less structured a project, the higher the likelihood that its outputs and processes can be easily defined."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Projects with relatively undefined goals are more likely to be subjected to users changing requirements and to run a higher risk of not satisfying project goals."
   },
   {
     id: "q_new_74",
-    // Fix: Changed question": to question:
     question: "Which of the following statements about project risk is not true?",
     options: [
       "The more dollars spent on a project, the greater the risk.",
@@ -905,12 +776,10 @@ var QUESTIONS_BANK = [
       "Very large-scale systems project have a failure rate that is 50 to 75 percent higher than that for other projects.",
       "The organizational complexity of a system contributes to the complexity of large-scale systems projects."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "The higher the number of implementation staff on a project, the lower the risk."
   },
   {
     id: "q_new_75",
-    // Fix: Changed question": to question:
     question: "Which of the following types of projects have a higher likelihood of failure?",
     options: [
       "Creating a spreadsheet-based payroll register.",
@@ -919,12 +788,10 @@ var QUESTIONS_BANK = [
       "Redesigning a user interface to an online investment site",
       "Building a web-based interface to an existing system"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Very large-scale or complex systems projects"
   },
   {
     id: "q_new_76",
-    // Fix: Changed question": to question:
     question: "Which of the following is not a factor in the high failure rate of reengineering systems projects?",
     options: [
       "Employees' concerns about change",
@@ -933,28 +800,22 @@ var QUESTIONS_BANK = [
       "Changes in job descriptions signaled by the new system",
       "Failures of the new technologies to perform according to plan"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Failures of the new technologies to perform according to plan"
   },
   {
     id: "q_new_77",
-    // Fix: Changed question": to question:
     question: "The relationship between users and information systems specialists has traditionally been a problem area for information systems implementation efforts.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_78",
-    // Fix: Changed question": to question:
     question: "User concerns and designer concerns are usually the same at the beginning of the project but may diverge later as the system is built.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_79",
-    // Fix: Changed question": to question:
     question: "Project management software typically has all of the following capabilities except:",
     options: [
       "identifying and quantifying project risk.",
@@ -963,12 +824,10 @@ var QUESTIONS_BANK = [
       "establishing starting and ending dates for tasks.",
       "facilitating modifications to tasks and resources."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "identifying and quantifying project risk."
   },
   {
     id: "q_new_80",
-    // Fix: Changed question": to question:
     question: "Which type of planning tool shows each task as a horizontal bar whose length is proportional to the time required to complete it?",
     options: [
       "PERT chart",
@@ -977,12 +836,10 @@ var QUESTIONS_BANK = [
       "Scoring model",
       "Portfolio analysis"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Gantt chart"
   },
   {
     id: "q_new_81",
-    // Fix: Changed question": to question:
     question: "To review a project's tasks and their interrelationships, you would use which of the following?",
     options: [
       "PERT chart",
@@ -991,12 +848,10 @@ var QUESTIONS_BANK = [
       "Scoring model",
       "Portfolio analysis"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "PERT chart"
   },
   {
     id: "q_new_82",
-    // Fix: Changed question": to question:
     question: "Which of the following helps project managers identify bottlenecks in project development?",
     options: [
       "Internal integration tools",
@@ -1005,12 +860,10 @@ var QUESTIONS_BANK = [
       "Both internal and external integration tools",
       "Portfolio analysis tools"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Formal planning and control tools"
   },
   {
     id: "q_new_83",
-    // Fix: Changed question": to question:
     question: "Which of the following is an example of using an external integration tool?",
     options: [
       "Creating a Gantt chart",
@@ -1019,12 +872,10 @@ var QUESTIONS_BANK = [
       "Using portfolio analysis",
       "Developing a scoring model"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Including user representatives as active members of the project team"
   },
   {
     id: "q_new_84",
-    // Fix: Changed question": to question:
     question: "You have been hired to implement an enterprise system that will automate much of the billing and accounting work for a statewide HVAC services company. Which of the following would you prepare to describe how the new system will affect a firm's structure and operations?",
     options: [
       "Information systems plan",
@@ -1033,12 +884,10 @@ var QUESTIONS_BANK = [
       "Organizational impact analysis",
       "Strategic planning document"
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "Organizational impact analysis"
   },
   {
     id: "q_new_85",
-    // Fix: Changed question": to question:
     question: "Counterimplementation is best defined as:",
     options: [
       "multiple implementations that are run in parallel.",
@@ -1047,39 +896,403 @@ var QUESTIONS_BANK = [
       "all of the organizational challenges involved in implementing a system.",
       "strategies used to overcome user resistance to change."
     ],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "deliberate attempts to thwart the implementation of a system."
   },
   {
     id: "q_new_86",
-    // Fix: Changed question": to question:
     question: "Mandatory use of a system is one effective way of overcoming user resistance to an information system.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u975E"
   },
   {
     id: "q_new_87",
-    // Fix: Changed question": to question:
     question: "Increased error rates may be a sign of user resistance to a new system.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_88",
-    // Fix: Changed question": to question:
     question: "The design of jobs, health issues, and the end-user interface of information systems are all considerations in the field of ergonomics.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
     correct_answer: "\u662F"
   },
   {
     id: "q_new_89",
-    // Fix: Changed question": to question:
     question: "The goal of sociotechnical design is to create systems where the organization changes to fit the requirements of the technology.",
     options: ["\u662F", "\u975E"],
-    // Fix: Changed correct_answer": to correct_answer:
+    correct_answer: "\u975E"
+  },
+  // New questions from images start here
+  {
+    id: "q_img_1",
+    question: "Much of the final assembly of Apple's iPhone occurs in which of the following locations?",
+    options: ["United States", "Japan", "South Korea", "China", "Germany"],
+    correct_answer: "China"
+  },
+  {
+    id: "q_img_2",
+    question: "Considering how to accomplish a division of labor across a global environment is an aspect of which of the following dimensions of developing an international systems architecture?",
+    options: ["Global environment", "Corporate global strategy", "Technology platform", "Organization structure", "Management and business processes"],
+    correct_answer: "Organization structure"
+  },
+  {
+    id: "q_img_3",
+    question: "New levels of global coordination of all of the major business functions permit the location of business activity according to:",
+    options: ["comparative advantage.", "social norms and values.", "competitive threat.", "knowledge base.", "labor costs."],
+    correct_answer: "comparative advantage."
+  },
+  {
+    id: "q_img_4",
+    question: "Which of the following industries is most affected by globalization?",
+    options: ["Telecommunications", "Manufacturing", "Law", "Entertainment", "Transportation"],
+    correct_answer: "Manufacturing"
+  },
+  {
+    id: "q_img_5",
+    question: "Which of the following is the best definition of the term transborder data flow?",
+    options: [
+      "The flow of information in international systems",
+      "The ways in which a country's laws change the flow of data from one country to another",
+      "The business of moving information from one country to another",
+      "The movement of information across international boundaries in any form",
+      "The business process of coordinating information from many different countries"
+    ],
+    correct_answer: "The movement of information across international boundaries in any form"
+  },
+  {
+    id: "q_img_6",
+    question: "All of the following present challenges to developing global business systems except:",
+    options: [
+      "foreign accounting practices.",
+      "the growth of a global knowledge base.",
+      "language differences.",
+      "currency fluctuations.",
+      "shortages of skilled consultants."
+    ],
+    correct_answer: "the growth of a global knowledge base."
+  },
+  {
+    id: "q_img_7",
+    question: "Most large companies with overseas operations have:",
+    options: [
+      "rationally developed international systems architectures.",
+      "inherited patchwork international systems from the distant past.",
+      "transaction-oriented reporting based at the home office for overseas business.",
+      "global marketing systems developed domestically.",
+      "enterprise systems developed by local firms."
+    ],
+    correct_answer: "inherited patchwork international systems from the distant past."
+  },
+  {
+    id: "q_img_8",
+    question: "The EU General Data Protection Regulation (GDPR):",
+    options: [
+      "requires that European companies meet U.S. data privacy standards.",
+      "provides additional privacy protections for Americans doing business in Europe.",
+      "provides additional privacy protection for European citizens and applies to all data produced by EU citizens or processed in Europe.",
+      "prevents the transfer of private personal information among EU nations.",
+      "allows European countries to adopt their own privacy legislation."
+    ],
+    correct_answer: "provides additional privacy protection for European citizens and applies to all data produced by EU citizens or processed in Europe."
+  },
+  {
+    id: "q_img_9",
+    question: "Consumers who only want to purchase products made in their own country are an example of:",
+    options: [
+      "cultural particularism.",
+      "political culture.",
+      "universal global attitudes.",
+      "different laws in different countries.",
+      "different business standards."
+    ],
+    correct_answer: "cultural particularism."
+  },
+  {
+    id: "q_img_10",
+    question: "Global business drivers can be divided into two groups: general cultural factors and specific business factors.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_11",
+    question: "The coronavirus pandemic has called into question the dependence on global supply chains where sourcing is concentrated in a single country.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_12",
+    question: "Micromarketing involves marketing to specific countries rather than global markets.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u975E"
+  },
+  {
+    id: "q_img_13",
+    question: "Particularism is a concept based on accepting a shared global culture and the penetration of domestic markets by foreign goods and services.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u975E"
+  },
+  {
+    id: "q_img_14",
+    question: "Language remains a significant challenge to the implementation of an international information system.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_15",
+    question: "Global economies of scale are facilitated by global markets, production, and administration.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_16",
+    question: "In a multinational business strategy, the finance/accounting function is:",
+    options: ["centralized.", "dispersed.", "coordinated.", "mixed.", "performed by local divisions in different countries."],
+    correct_answer: "centralized."
+  },
+  {
+    id: "q_img_17",
+    question: "A company that controls finances in the home country and decentralizes production, sales, and marketing operations to other countries is using which of the following strategies?",
+    options: ["domestic exporter", "franchising", "transnational", "multinational", "conglomerate"],
+    correct_answer: "multinational"
+  },
+  {
+    id: "q_img_18",
+    question: "Which of the following is the dominant pattern of governance used by transnational firms?",
+    options: ["Centralized", "Duplicated", "Decentralized", "Federal structure", "Localized"],
+    correct_answer: "Federal structure"
+  },
+  {
+    id: "q_img_19",
+    question: "In which of the following strategies are nearly all value-added activities managed from a global perspective without reference to national borders?",
+    options: ["Domestic exporter", "Multinational", "Franchiser", "Transnational", "Domestic importer"],
+    correct_answer: "Transnational"
+  },
+  {
+    id: "q_img_20",
+    question: "Which of the following statements about transnational firms is not true?",
+    options: [
+      "Transnational firms have many regional headquarters and perhaps a world headquarters.",
+      "Transnational firms are stateless.",
+      "Transnational firms view the entire globe as their management frame of reference.",
+      "Transnational firms have no single headquarters.",
+      "Many firms have attained transnational status."
+    ],
+    correct_answer: "Many firms have attained transnational status."
+  },
+  {
+    id: "q_img_21",
+    question: "Which of the following business functions is not centralized in the domestic exporter business strategy?",
+    options: ["Production", "Finance/accounting", "Sales/marketing", "Human resources", "Strategic management"],
+    correct_answer: "Sales/marketing"
+  },
+  {
+    id: "q_img_22",
+    question: "In decentralized systems:",
+    options: [
+      "development occurs at the home base and operations are handed over to autonomous units in foreign locations.",
+      "each foreign unit designs its own unique solutions and systems.",
+      "systems development and operations occur in an integrated and coordinated fashion across all units.",
+      "foreign units design the solutions and systems used at the domestic home base.",
+      "all systems are designed in domestic headquarters and then distributed to foreign units."
+    ],
+    correct_answer: "each foreign unit designs its own unique solutions and systems."
+  },
+  {
+    id: "q_img_23",
+    question: "In networked systems:",
+    options: [
+      "development occurs at the home base and operations are handed over to autonomous units in foreign locations.",
+      "each foreign unit designs its own unique solutions and systems.",
+      "systems development and operations occur in an integrated and coordinated fashion across all units.",
+      "foreign units design the solutions and systems used at the domestic home base.",
+      "development occurs at the home base but operations are handed over to autonomous units in foreign locations."
+    ],
+    correct_answer: "systems development and operations occur in an integrated and coordinated fashion across all units."
+  },
+  {
+    id: "q_img_24",
+    question: "Domestic exporters typically have highly ________ systems.",
+    options: ["duplicated", "centralized", "networked", "decentralized", "autonomous"],
+    correct_answer: "centralized"
+  },
+  {
+    id: "q_img_25",
+    question: "Which of the following is an emerging pattern of system configuration for multinational companies?",
+    options: ["Duplicated", "Centralized", "Networked", "Decentralized", "Autonomous"],
+    correct_answer: "Networked"
+  },
+  {
+    id: "q_img_26",
+    question: "Of the following, which is one of the central principles recommended in this chapter for a firm organizing itself for international business?",
+    options: [
+      "Organize value-adding activities along lines of comparative advantage.",
+      "Establish multiple offices for international systems and a global CIO position.",
+      "Disperse production and marketing to regional centers and establish a single center for world headquarters and strategic management.",
+      "Develop and operate systems units at the international level first.",
+      "Centralize production but decentralize marketing and sales to be close to the customer."
+    ],
+    correct_answer: "Organize value-adding activities along lines of comparative advantage."
+  },
+  {
+    id: "q_img_27",
+    question: "In a franchiser business strategy, strategic management and finance/accounting are coordinated and production, sales/marketing, and human resources are centralized.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u975E"
+  },
+  {
+    id: "q_img_28",
+    question: "Transnational systems units should handle telecommunications and systems development across national boundaries that take place within major geographic regions, such as Europe, Asia, and the Americas.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u975E"
+  },
+  {
+    id: "q_img_29",
+    question: "Which of the following is not one of the principal management challenges in developing global systems?",
+    options: [
+      "Encouraging local users to support global systems",
+      "Coordinating applications development",
+      "Defining an acceptable test plan",
+      "Agreeing on common user requirements",
+      "Introducing changes in business processes"
+    ],
+    correct_answer: "Defining an acceptable test plan"
+  },
+  {
+    id: "q_img_30",
+    question: "Which of the following occurs as a firm moves from local option systems to regional and global systems?",
+    options: [
+      "Agency costs increase.",
+      "Coordination costs decrease.",
+      "Transaction costs increase.",
+      "Both transaction and agency costs increase.",
+      "All costs increase."
+    ],
+    correct_answer: "Agency costs increase."
+  },
+  {
+    id: "q_img_31",
+    question: "When developing a global system, bringing the opposition of local groups into the process of designing and implementing the solution without giving up control over the direction and nature of the change is called:",
+    options: ["cooptation.", "change management.", "implementation.", "advocacy.", "cooperation."],
+    correct_answer: "cooptation."
+  },
+  {
+    id: "q_img_32",
+    question: "Transnational centers of excellence do all of the following except:",
+    options: [
+      "perform initial identification and specification of business processes.",
+      "define information requirements.",
+      "perform business and systems analysis.",
+      "accomplish all design and testing.",
+      "implement the system throughout the world."
+    ],
+    correct_answer: "implement the system throughout the world."
+  },
+  {
+    id: "q_img_33",
+    question: "The chapter outlines four major steps in developing an effective global system solution. Which of the following is not one of these steps?",
+    options: [
+      "Identify which local systems need to be replaced.",
+      "Identify the core systems to coordinate centrally.",
+      "Choose a developmental approach.",
+      "Make the benefits clear.",
+      "Define the core business processes."
+    ],
+    correct_answer: "Identify which local systems need to be replaced."
+  },
+  {
+    id: "q_img_34",
+    question: "The way to identify core business processes is to conduct a:",
+    options: [
+      "cost-benefit analysis.",
+      "work-flow analysis.",
+      "business process analysis.",
+      "feasibility analysis.",
+      "systems analysis."
+    ],
+    correct_answer: "business process analysis."
+  },
+  {
+    id: "q_img_35",
+    question: "Global systems allow fixed costs to be amortized over a much larger customer base.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_36",
+    question: "Success as a change agent depends on legitimacy, authority, and ability to involve users in the change design process.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_37",
+    question: "Software localization is the process of:",
+    options: [
+      "developing a purely graphical user interface.",
+      "converting software programming to run on a different platform.",
+      "converting software to operate in a second language.",
+      "modifying software so that it can be adopted in other countries without engineering changes.",
+      "modifying software so executives can understand its command language."
+    ],
+    correct_answer: "converting software to operate in a second language."
+  },
+  {
+    id: "q_img_38",
+    question: "Which of the following is not an important technology issue to consider when developing an international information system?",
+    options: [
+      "Standardizing the global computing platform",
+      "Developing a global knowledge base",
+      "Finding specific software applications that are user friendly and enhance productivity",
+      "Building sufficient connectivity",
+      "Developing common data standards"
+    ],
+    correct_answer: "Developing a global knowledge base"
+  },
+  {
+    id: "q_img_39",
+    question: "Which of the following statements about connectivity in relation to global systems is not true?",
+    options: [
+      "Few global corporations trust the security of the Internet.",
+      "The public Internet guarantees a basic level of service.",
+      "Many global corporations use private networks to communicate sensitive data.",
+      "Not all countries support basic Internet service.",
+      "The Internet provides a powerful foundation for providing connectivity among the dispersed units of global firms."
+    ],
+    correct_answer: "The public Internet guarantees a basic level of service."
+  },
+  {
+    id: "q_img_40",
+    question: "Which of the following is not one of the challenges posed by international networks, including the Internet?",
+    options: [
+      "Quality of service",
+      "Security",
+      "Costs and tariffs",
+      "Differences in Internet protocols",
+      "Network management"
+    ],
+    correct_answer: "Differences in Internet protocols"
+  },
+  {
+    id: "q_img_41",
+    question: "In developing countries, use of the Internet is limited by all of the following except:",
+    options: [
+      "use of mobile telephones.",
+      "high cost of Internet access.",
+      "poor bandwidth capacity.",
+      "unreliable power grids.",
+      "claims of digital sovereignty."
+    ],
+    correct_answer: "use of mobile telephones."
+  },
+  {
+    id: "q_img_42",
+    question: "While private networks have guaranteed service levels and better security than the Internet, the Internet is the primary foundation for global corporate networks when lower security and service levels are acceptable.",
+    options: ["\u662F", "\u975E"],
+    correct_answer: "\u662F"
+  },
+  {
+    id: "q_img_43",
+    question: "Internet-based VPNs provide the same level of quick and predictable response as private networks.",
+    options: ["\u662F", "\u975E"],
     correct_answer: "\u975E"
   }
 ];
@@ -1334,7 +1547,7 @@ var GameScreen = (props) => {
     isMobileVersus ? /* @__PURE__ */ jsxs2("div", { className: "flex flex-row gap-2 md:gap-4 mb-4", children: [
       /* @__PURE__ */ jsxs2("div", { className: "flex-1 flex flex-col gap-1.5 md:gap-3", children: [
         /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p1} mb-1 md:mb-2 text-sm md:text-base`, children: "\u73A9\u5BB61" }),
-        currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
+        currentQuestion.optionsForP1.map((option, index) => /* @__PURE__ */ jsxs2(
           "button",
           {
             onClick: () => {
@@ -1353,14 +1566,14 @@ var GameScreen = (props) => {
               /* @__PURE__ */ jsx2("span", { className: "flex-grow break-words min-w-0", children: option })
             ]
           },
-          `p1-${currentQuestion.id}-${option}`
+          `p1-${currentQuestion.id}-${option}-${index}`
         ))
       ] }),
       /* @__PURE__ */ jsx2("div", { className: "w-px bg-slate-300 mx-1" }),
       " ",
       /* @__PURE__ */ jsxs2("div", { className: "flex-1 flex flex-col gap-1.5 md:gap-3", children: [
         /* @__PURE__ */ jsx2("h3", { className: `text-center font-semibold ${PLAYER_COLORS.p2} mb-1 md:mb-2 text-sm md:text-base`, children: "\u73A9\u5BB62" }),
-        currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
+        currentQuestion.optionsForP2.map((option, index) => /* @__PURE__ */ jsxs2(
           "button",
           {
             onClick: () => {
@@ -1379,23 +1592,29 @@ var GameScreen = (props) => {
               /* @__PURE__ */ jsx2("span", { className: "flex-grow break-words min-w-0", children: option })
             ]
           },
-          `p2-${currentQuestion.id}-${option}`
+          `p2-${currentQuestion.id}-${option}-${index}`
         ))
       ] })
-    ] }) : /* @__PURE__ */ jsx2("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4", children: currentQuestion.options.map((option, index) => /* @__PURE__ */ jsxs2(
-      "button",
-      {
-        onClick: () => gameMode === "single" /* SINGLE */ && isSinglePlayerButtonsEnabled && onAnswer(option),
-        disabled: isRoundEvaluated || gameMode === "single" /* SINGLE */ && !isSinglePlayerButtonsEnabled,
-        className: getDesktopButtonClass(option),
-        "aria-label": `\u9078\u9805 ${index + 1}: ${option}`,
-        children: [
-          /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-6 h-6 flex items-center justify-center text-xs font-mono shrink-0", children: index + 1 }),
-          /* @__PURE__ */ jsx2("span", { children: option })
-        ]
-      },
-      `${currentQuestion.id}-${option}`
-    )) }),
+    ] }) : (
+      // Single Player or Desktop Versus
+      /* @__PURE__ */ jsx2("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4", children: currentQuestion.optionsForP1.map((option, index) => (
+        // Use optionsForP1 for desktop/single
+        /* @__PURE__ */ jsxs2(
+          "button",
+          {
+            onClick: () => gameMode === "single" /* SINGLE */ && isSinglePlayerButtonsEnabled && onAnswer(option),
+            disabled: isRoundEvaluated || gameMode === "single" /* SINGLE */ && !isSinglePlayerButtonsEnabled,
+            className: getDesktopButtonClass(option),
+            "aria-label": `\u9078\u9805 ${index + 1}: ${option}`,
+            children: [
+              /* @__PURE__ */ jsx2("span", { className: "bg-black/10 text-black/70 rounded-full w-6 h-6 flex items-center justify-center text-xs font-mono shrink-0", children: index + 1 }),
+              /* @__PURE__ */ jsx2("span", { children: option })
+            ]
+          },
+          `${currentQuestion.id}-${option}-${index}`
+        )
+      )) })
+    ),
     /* @__PURE__ */ jsxs2("div", { className: "min-h-[60px] md:min-h-[80px] flex flex-col items-center justify-center", children: [
       gameMode !== "single" /* SINGLE */ && /* @__PURE__ */ jsxs2("div", { className: "w-full flex justify-between text-xs sm:text-sm md:text-base font-semibold mb-2", children: [
         /* @__PURE__ */ jsx2("span", { className: `${p1Feedback.includes("\u6B63\u78BA") ? FEEDBACK_COLORS.correct : p1Feedback.includes("\u7B54\u932F") || p1Feedback.includes("\u8D85\u6642") ? FEEDBACK_COLORS.wrong : PLAYER_COLORS.p1} ${p1Feedback.includes("\u5DF2\u4F5C\u7B54") ? "animate-pulse" : ""} w-1/2 text-left`, children: p1Feedback }),
@@ -1517,6 +1736,13 @@ var ReviewModal_default = ReviewModal;
 
 // App.tsx
 import { Fragment as Fragment2, jsx as jsx5, jsxs as jsxs5 } from "react/jsx-runtime";
+var arraysAreEqual = (arr1, arr2) => {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+};
 var shuffleArray = (array) => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -1552,23 +1778,41 @@ var App = () => {
   const [showReviewModal, setShowReviewModal] = useState2(false);
   const timerRef = useRef2(null);
   const currentQuestionData = roundQuestions[currentQuestionIndex] || null;
-  const currentQuestionForDisplay = useMemo(() => {
+  const processedQuestionForDisplay = useMemo(() => {
     if (!currentQuestionData) {
       return null;
     }
     const originalOptions = currentQuestionData.options;
-    let displayOptions;
+    let p1DisplayOpts;
+    let p2DisplayOpts;
     const isTrueFalseQuestion = originalOptions.length === 2 && originalOptions.includes("\u662F") && originalOptions.includes("\u975E");
     if (isTrueFalseQuestion) {
-      displayOptions = ["\u662F", "\u975E"];
+      p1DisplayOpts = ["\u662F", "\u975E"];
+      p2DisplayOpts = ["\u662F", "\u975E"];
     } else {
-      displayOptions = shuffleArray([...originalOptions]);
+      p1DisplayOpts = shuffleArray([...originalOptions]);
+      if (gameMode === "versus_mobile" /* VERSUS_MOBILE */) {
+        p2DisplayOpts = shuffleArray([...originalOptions]);
+        if (originalOptions.length > 1) {
+          let attempts = 0;
+          while (arraysAreEqual(p1DisplayOpts, p2DisplayOpts) && attempts < 10) {
+            p2DisplayOpts = shuffleArray([...originalOptions]);
+            attempts++;
+          }
+          if (originalOptions.length === 2 && arraysAreEqual(p1DisplayOpts, p2DisplayOpts)) {
+            p2DisplayOpts = [p1DisplayOpts[1], p1DisplayOpts[0]];
+          }
+        }
+      } else {
+        p2DisplayOpts = [...p1DisplayOpts];
+      }
     }
     return {
       ...currentQuestionData,
-      options: displayOptions
+      optionsForP1: p1DisplayOpts,
+      optionsForP2: p2DisplayOpts
     };
-  }, [currentQuestionData]);
+  }, [currentQuestionData, gameMode]);
   const resetGameState = useCallback(() => {
     setQuestionsAnsweredTotal(0);
     setCurrentQuestionIndex(0);
@@ -1775,7 +2019,7 @@ var App = () => {
     activeTimerForPlayer
   ]);
   const handleKeyPress = useCallback((event) => {
-    if (currentScreen !== "game" || !currentQuestionForDisplay || !currentQuestionData || gameMode === "versus_mobile" /* VERSUS_MOBILE */ || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */) {
+    if (currentScreen !== "game" || !processedQuestionForDisplay || !currentQuestionData || gameMode === "versus_mobile" /* VERSUS_MOBILE */ || gameMode === "versus_speed_mobile" /* VERSUS_SPEED_MOBILE */) {
       return;
     }
     if (isRoundEvaluated && gameMode !== "single" /* SINGLE */) return;
@@ -1785,6 +2029,7 @@ var App = () => {
     let player = void 0;
     const p1Keys = ["q", "w", "e", "a", "s"];
     const p2Keys = ["1", "2", "3", "4", "5"];
+    const optionsToConsiderForKeyPress = processedQuestionForDisplay.optionsForP1;
     if (p1Keys.includes(key)) {
       determinedOptionIndex = p1Keys.indexOf(key);
       player = "p1" /* PLAYER1 */;
@@ -1792,8 +2037,8 @@ var App = () => {
       determinedOptionIndex = p2Keys.indexOf(key);
       player = "p2" /* PLAYER2 */;
     }
-    if (determinedOptionIndex !== -1 && determinedOptionIndex < currentQuestionForDisplay.options.length) {
-      const selectedOption = currentQuestionForDisplay.options[determinedOptionIndex];
+    if (determinedOptionIndex !== -1 && determinedOptionIndex < optionsToConsiderForKeyPress.length) {
+      const selectedOption = optionsToConsiderForKeyPress[determinedOptionIndex];
       if (gameMode === "single" /* SINGLE */) {
         handleAnswer(selectedOption);
       } else if (gameMode === "versus_desktop" /* VERSUS_DESKTOP */) {
@@ -1806,7 +2051,7 @@ var App = () => {
         if (!roundFirstAnswerBy) handleAnswer(selectedOption, player);
       }
     }
-  }, [currentScreen, currentQuestionData, currentQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
+  }, [currentScreen, currentQuestionData, processedQuestionForDisplay, gameMode, isRoundEvaluated, isSinglePlayerButtonsEnabled, player1Answered, player2Answered, roundFirstAnswerBy, handleAnswer]);
   useEffect2(() => {
     window.addEventListener("keydown", handleKeyPress);
     return () => {
@@ -1851,11 +2096,11 @@ var App = () => {
       canReview && /* @__PURE__ */ jsx5(ReviewModal_default, { isOpen: showReviewModal, onClose: () => setShowReviewModal(false), wrongAnswers: wrongAnswersList })
     ] });
   }
-  return currentQuestionForDisplay ? /* @__PURE__ */ jsx5(Fragment2, { children: /* @__PURE__ */ jsx5(
+  return processedQuestionForDisplay ? /* @__PURE__ */ jsx5(Fragment2, { children: /* @__PURE__ */ jsx5(
     GameScreen_default,
     {
       gameMode,
-      currentQuestion: currentQuestionForDisplay,
+      currentQuestion: processedQuestionForDisplay,
       questionNumber: currentQuestionIndex + 1,
       totalQuestions: targetQuestions,
       player1Score,
